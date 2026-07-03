@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>コメント｜旅行配信者たけさんの曲部屋</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg1:#eef2ff; --bg2:#f6edf9; --bg3:#e9f7ff;
+  --ink:#453f5e; --ink-2:#5b5478; --sub:#8b84a8; --muted:#b3adc9;
+  --line:rgba(120,110,170,0.16); --line-2:rgba(120,110,170,0.28);
+  --sky:#7cc0ff; --lav:#a99bff; --rose:#ff9ecb; --accent:#8f7dff;
+  --card:rgba(255,255,255,0.55); --card-2:rgba(255,255,255,0.72);
+  --disp:'Cormorant Garamond',serif; --jp:'Shippori Mincho',serif;
+  --ui:'Zen Kaku Gothic New',-apple-system,'Hiragino Sans',sans-serif;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--ui); color: var(--ink); min-height: 100vh; overflow-x: hidden;
+  background:
+    radial-gradient(1200px 700px at 12% -8%, #ffffff 0%, transparent 55%),
+    radial-gradient(900px 600px at 100% 0%, #e7f1ff 0%, transparent 55%),
+    linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 48%, var(--bg3) 100%);
+  background-attachment: fixed;
+}
+::selection { background: rgba(143,125,255,0.28); color: var(--ink); }
+::-webkit-scrollbar { width: 11px; }
+::-webkit-scrollbar-thumb { background: rgba(143,125,255,0.35); border-radius: 6px; border: 3px solid transparent; background-clip: padding-box; }
+
+.atmosphere { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.blob { position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(90px); opacity: 0.5; mix-blend-mode: multiply; }
+.blob-a { background: radial-gradient(circle, rgba(124,192,255,0.55), transparent 62%); top: -28vmax; left: -18vmax; animation: drift-a 30s ease-in-out infinite alternate; }
+.blob-b { background: radial-gradient(circle, rgba(255,158,203,0.5), transparent 62%); bottom: -30vmax; right: -18vmax; animation: drift-b 36s ease-in-out infinite alternate; }
+.blob-c { background: radial-gradient(circle, rgba(169,155,255,0.45), transparent 62%); top: 30%; left: 55%; width: 44vmax; height: 44vmax; animation: drift-a 44s ease-in-out infinite alternate-reverse; }
+@keyframes drift-a { from { transform: translate(0,0) scale(1); } to { transform: translate(10vmax,7vmax) scale(1.18); } }
+@keyframes drift-b { from { transform: translate(0,0) scale(1.1); } to { transform: translate(-9vmax,-6vmax) scale(0.92); } }
+.stars { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    radial-gradient(1.5px 1.5px at 20% 30%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1.5px 1.5px at 70% 20%, rgba(169,155,255,0.8), transparent),
+    radial-gradient(1px 1px at 40% 70%, rgba(124,192,255,0.9), transparent),
+    radial-gradient(1.5px 1.5px at 85% 60%, rgba(255,158,203,0.8), transparent);
+  animation: twinkle 6s ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { opacity: 0.55; } 50% { opacity: 1; } }
+
+.topnav { position: relative; z-index: 6; display: flex; align-items: center; justify-content: space-between;
+  max-width: 1080px; margin: 0 auto; padding: 22px clamp(16px,4vw,34px) 0; }
+.brand-mini { font-family: var(--disp); font-size: 1.5rem; font-weight: 500; letter-spacing: 0.04em; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+.brand-mini .star { color: var(--accent); font-size: 1.1rem; }
+.nav-links { display: flex; gap: 8px; }
+.nav-links a { font-family: var(--ui); font-size: 0.8rem; font-weight: 500; color: var(--ink-2); text-decoration: none;
+  padding: 9px 18px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--card); backdrop-filter: blur(10px); transition: all 0.2s; }
+.nav-links a:hover { color: #fff; background: var(--accent); border-color: transparent; box-shadow: 0 8px 22px rgba(143,125,255,0.35); transform: translateY(-1px); }
+.nav-links a.active { color: var(--accent); border-color: var(--accent); }
+
+header { position: relative; z-index: 1; padding: clamp(30px,6vw,70px) 20px clamp(10px,3vw,26px); text-align: center; }
+.hero-mark { font-size: 1.5rem; color: var(--accent); filter: drop-shadow(0 0 18px rgba(143,125,255,0.6)); animation: floaty 5s ease-in-out infinite; display: inline-block; margin-bottom: 8px; }
+@keyframes floaty { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-10px) rotate(6deg); } }
+.hero-big { font-family: var(--disp); font-weight: 400; font-size: clamp(2.8rem, 12vw, 7.5rem); line-height: 0.92;
+  background: linear-gradient(115deg, var(--sky) 0%, var(--lav) 45%, var(--rose) 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 12px 40px rgba(143,125,255,0.25)); }
+.hero-big .thin { font-style: italic; font-weight: 300; }
+.subtitle { margin-top: 14px; font-family: var(--jp); font-size: clamp(0.95rem,3vw,1.2rem); font-weight: 500; letter-spacing: 0.14em; color: var(--ink); }
+
+main { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 14px 16px 100px; }
+
+/* 規約 */
+.terms { border: 1px solid var(--line-2); background: var(--card-2); backdrop-filter: blur(12px);
+  border-radius: 22px; padding: 24px 28px; box-shadow: 0 20px 50px -28px rgba(90,80,160,0.4); margin-top: 10px; }
+.terms h2 { font-family: var(--disp); font-size: 1.4rem; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+.terms .lead { font-size: 0.85rem; color: var(--ink-2); line-height: 1.9; margin-bottom: 14px; }
+.terms ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.terms li { font-size: 0.82rem; color: var(--ink-2); line-height: 1.7; padding-left: 26px; position: relative; }
+.terms li::before { content: "✦"; position: absolute; left: 0; top: 0; color: var(--accent); font-size: 0.8rem; }
+.terms .note { margin-top: 14px; font-size: 0.76rem; color: var(--sub); line-height: 1.8; border-top: 1px solid var(--line); padding-top: 12px; }
+
+/* フォーム */
+.form-wrap { margin-top: 22px; border: 1px solid var(--line-2); background: var(--card-2); backdrop-filter: blur(12px);
+  border-radius: 22px; padding: 22px 24px; box-shadow: 0 20px 50px -28px rgba(90,80,160,0.4); }
+.form-wrap h3 { font-family: var(--disp); font-size: 1.3rem; font-weight: 500; color: var(--ink); margin-bottom: 14px; }
+.field { margin-bottom: 12px; }
+.field label { display: block; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--sub); margin-bottom: 6px; text-transform: uppercase; }
+.field input, .field textarea {
+  width: 100%; font-family: var(--ui); font-size: 0.9rem; color: var(--ink);
+  background: rgba(255,255,255,0.7); border: 1px solid var(--line-2); border-radius: 14px;
+  padding: 12px 15px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; resize: vertical;
+}
+.field input:focus, .field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(143,125,255,0.14); }
+.field textarea { min-height: 96px; line-height: 1.7; }
+.form-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 4px; }
+.agree { font-size: 0.74rem; color: var(--sub); line-height: 1.6; }
+.btn-post {
+  font-family: var(--ui); font-size: 0.88rem; font-weight: 700; color: #fff; cursor: pointer;
+  border: none; border-radius: 999px; padding: 12px 30px; white-space: nowrap;
+  background: linear-gradient(135deg, var(--accent), var(--sky)); box-shadow: 0 10px 26px rgba(143,125,255,0.4); transition: transform 0.12s, box-shadow 0.2s; }
+.btn-post:hover { transform: translateY(-1px); box-shadow: 0 14px 32px rgba(143,125,255,0.55); }
+.btn-post:active { transform: scale(0.97); }
+.btn-post:disabled { opacity: 0.5; cursor: default; transform: none; box-shadow: none; }
+.form-msg { margin-top: 10px; font-size: 0.78rem; min-height: 1.2em; }
+.form-msg.ok { color: #3aa981; }
+.form-msg.err { color: #e0679a; }
+
+/* コメント一覧 */
+.list-head { display: flex; align-items: baseline; justify-content: space-between; margin: 34px 4px 14px; }
+.list-head h3 { font-family: var(--disp); font-size: 1.5rem; font-weight: 500; color: var(--ink); }
+.list-head .cnt { font-size: 0.72rem; letter-spacing: 0.2em; color: var(--muted); }
+.list-head .cnt b { color: var(--accent); font-weight: 700; }
+
+#comments { display: flex; flex-direction: column; gap: 12px; }
+.comment { position: relative; border: 1px solid var(--line); background: var(--card); backdrop-filter: blur(10px);
+  border-radius: 18px; padding: 16px 20px; transition: transform 0.18s, box-shadow 0.18s; }
+.comment:hover { transform: translateY(-1px); box-shadow: 0 14px 30px -20px rgba(90,80,160,0.5); }
+.c-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+.c-name { font-family: var(--jp); font-size: 0.92rem; font-weight: 600; color: var(--accent); }
+.c-time { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.04em; }
+.c-body { font-size: 0.9rem; color: var(--ink-2); line-height: 1.85; white-space: pre-wrap; word-break: break-word; }
+.c-del { position: absolute; top: 12px; right: 14px; display: none; cursor: pointer; border: 1px solid var(--line-2);
+  background: rgba(255,255,255,0.6); color: var(--rose); font-size: 0.68rem; border-radius: 999px; padding: 4px 12px; transition: all 0.15s; }
+.c-del:hover { background: var(--rose); color: #fff; border-color: transparent; }
+body.admin .c-del { display: inline-block; }
+
+.state { text-align: center; color: var(--muted); padding: 50px 0; font-family: var(--jp); font-size: 0.9rem; letter-spacing: 0.14em; }
+.state.hidden { display: none; }
+
+.admin-bar { text-align: center; margin-top: 30px; }
+.admin-toggle { font-size: 0.72rem; color: var(--muted); background: none; border: none; cursor: pointer; letter-spacing: 0.12em; }
+.admin-toggle:hover { color: var(--accent); }
+body.admin .admin-toggle { color: var(--accent); }
+
+.copyright { text-align: center; margin-top: 26px; font-family: var(--disp); font-size: 0.95rem; letter-spacing: 0.1em; color: var(--sub); }
+.copyright .s { color: var(--accent); }
+
+@media (max-width: 560px) {
+  .form-foot { flex-direction: column; align-items: stretch; }
+  .btn-post { width: 100%; }
+  .nav-links a { padding: 8px 14px; font-size: 0.74rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="atmosphere">
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+  <div class="blob blob-c"></div>
+</div>
+<div class="stars"></div>
+
+<nav class="topnav">
+  <div class="brand-mini"><span class="star">✦</span> Take's Sound</div>
+  <div class="nav-links">
+    <a href="index.html">Music</a>
+    <a href="comments.html" class="active">Comments</a>
+  </div>
+</nav>
+
+<header>
+  <span class="hero-mark">✦</span>
+  <div class="hero-big">Comments</div>
+  <p class="subtitle">感想・メッセージ、自由にどうぞ</p>
+</header>
+
+<main>
+  <!-- ============ 利用規約 ============ -->
+  <section class="terms">
+    <h2>ご利用にあたって</h2>
+    <p class="lead">どなたでも自由に書き込めます。名前は空欄でもOK（「名無し」で表示されます）。書き込む前に、下のルールをご確認ください。書き込んだ時点で、この内容に同意したものとみなします。</p>
+    <ul>
+      <li>誹謗中傷・差別・脅迫など、人を傷つける内容は禁止です。</li>
+      <li>個人情報（本名・住所・電話番号・メールなど）の書き込みはやめてください。自分のものでも控えてください。</li>
+      <li>宣伝・スパム・無関係なURLの貼り付けはご遠慮ください。</li>
+      <li>わいせつ・暴力的など、公序良俗に反する内容は禁止です。</li>
+      <li>他人になりすます行為は禁止です。</li>
+    </ul>
+    <p class="note">上記に反するコメントや、管理人が不適切と判断したコメントは、予告なく削除します。あらかじめご了承ください。ここに書かれた内容は誰でも読める公開の場です。個人が特定される情報は書かないようご注意ください。</p>
+  </section>
+
+  <!-- ============ 投稿フォーム ============ -->
+  <section class="form-wrap">
+    <h3>コメントを書く</h3>
+    <div class="field">
+      <label for="cName">お名前（任意）</label>
+      <input type="text" id="cName" maxlength="40" placeholder="名無し" autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="cBody">コメント</label>
+      <textarea id="cBody" maxlength="1000" placeholder="曲の感想など、お気軽にどうぞ…"></textarea>
+    </div>
+    <div class="form-foot">
+      <span class="agree">送信すると<strong>利用規約に同意</strong>したものとみなされます。</span>
+      <button class="btn-post" id="btnPost">送信する</button>
+    </div>
+    <div class="form-msg" id="formMsg"></div>
+  </section>
+
+  <!-- ============ 一覧 ============ -->
+  <div class="list-head">
+    <h3>Messages</h3>
+    <span class="cnt" id="cCount"></span>
+  </div>
+  <div id="comments"></div>
+  <p class="state" id="loading">読み込み中…</p>
+  <p class="state hidden" id="noComments">まだコメントはありません。最初のひとことをどうぞ ✦</p>
+  <p class="state hidden" id="loadErr">コメントを読み込めませんでした。時間をおいて再度お試しください。</p>
+
+  <div class="admin-bar">
+    <button class="admin-toggle" id="adminToggle">管理人</button>
+  </div>
+  <p class="copyright"><span class="s">✦</span> © 2026 旅行配信者たけさん <span class="s">✦</span></p>
+</main>
+
+<script>
+"use strict";
+
+const SUPABASE_URL = "https://mbviclfaijldherrtmyk.supabase.co";
+const SUPABASE_KEY = "sb_publishable_EK-rH_HBQIJKmnhNgEa6Iw_7_k4cdqu";
+
+const sbHeaders = {
+  "apikey": SUPABASE_KEY,
+  "Authorization": "Bearer " + SUPABASE_KEY,
+  "Content-Type": "application/json"
+};
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function fmtDate(iso) {
+  const d = new Date(iso);
+  if (isNaN(d)) return "";
+  const p = n => String(n).padStart(2, "0");
+  return d.getFullYear() + "/" + p(d.getMonth()+1) + "/" + p(d.getDate()) + " " + p(d.getHours()) + ":" + p(d.getMinutes());
+}
+
+/* ================= 読み込み ================= */
+async function loadComments() {
+  $("loading").classList.remove("hidden");
+  $("loadErr").classList.add("hidden");
+  $("noComments").classList.add("hidden");
+  try {
+    const res = await fetch(SUPABASE_URL + "/rest/v1/comments?select=id,name,body,created_at&order=created_at.desc", { headers: sbHeaders });
+    if (!res.ok) throw new Error("http " + res.status);
+    const rows = await res.json();
+    $("loading").classList.add("hidden");
+    renderComments(Array.isArray(rows) ? rows : []);
+  } catch (e) {
+    $("loading").classList.add("hidden");
+    $("loadErr").classList.remove("hidden");
+  }
+}
+
+function renderComments(rows) {
+  const wrap = $("comments");
+  wrap.innerHTML = "";
+  $("cCount").innerHTML = "<b>" + rows.length + "</b> 件";
+  $("noComments").classList.toggle("hidden", rows.length !== 0);
+
+  rows.forEach(r => {
+    const el = document.createElement("div");
+    el.className = "comment";
+    el.innerHTML =
+      '<button class="c-del" data-id="' + r.id + '" title="削除">削除</button>' +
+      '<div class="c-head">' +
+        '<span class="c-name">' + esc(r.name || "名無し") + '</span>' +
+        '<span class="c-time">' + fmtDate(r.created_at) + '</span>' +
+      '</div>' +
+      '<div class="c-body">' + esc(r.body) + '</div>';
+    el.querySelector(".c-del").addEventListener("click", () => deleteComment(r.id));
+    wrap.appendChild(el);
+  });
+}
+
+/* ================= 投稿 ================= */
+async function postComment() {
+  const name = $("cName").value.trim();
+  const body = $("cBody").value.trim();
+  const msg = $("formMsg");
+  msg.className = "form-msg";
+  msg.textContent = "";
+
+  if (!body) { msg.className = "form-msg err"; msg.textContent = "コメントを入力してください。"; return; }
+
+  $("btnPost").disabled = true;
+  try {
+    const res = await fetch(SUPABASE_URL + "/rest/v1/rpc/post_comment", {
+      method: "POST", headers: sbHeaders,
+      body: JSON.stringify({ p_name: name, p_body: body })
+    });
+    if (!res.ok) throw new Error("http " + res.status);
+    msg.className = "form-msg ok";
+    msg.textContent = "投稿しました。ありがとうございます ✦";
+    $("cName").value = "";
+    $("cBody").value = "";
+    await loadComments();
+  } catch (e) {
+    msg.className = "form-msg err";
+    msg.textContent = "送信に失敗しました。時間をおいて再度お試しください。";
+  } finally {
+    $("btnPost").disabled = false;
+  }
+}
+
+/* ================= 削除（管理人）================= */
+function getAdminPass() {
+  let p = sessionStorage.getItem("admin_pass");
+  if (!p) {
+    p = prompt("管理用パスワードを入力してください");
+    if (p) sessionStorage.setItem("admin_pass", p);
+  }
+  return p;
+}
+
+async function deleteComment(id) {
+  const pass = getAdminPass();
+  if (!pass) return;
+  if (!confirm("このコメントを削除しますか？")) return;
+  try {
+    const res = await fetch(SUPABASE_URL + "/rest/v1/rpc/delete_comment", {
+      method: "POST", headers: sbHeaders,
+      body: JSON.stringify({ p_id: id, p_pass: pass })
+    });
+    const ok = await res.json();
+    if (ok === true) {
+      await loadComments();
+    } else {
+      sessionStorage.removeItem("admin_pass");
+      alert("パスワードが違います。");
+    }
+  } catch (e) {
+    alert("削除に失敗しました。");
+  }
+}
+
+/* ================= 管理モード切替 ================= */
+$("adminToggle").addEventListener("click", () => {
+  if (document.body.classList.contains("admin")) {
+    document.body.classList.remove("admin");
+    sessionStorage.removeItem("admin_pass");
+    sessionStorage.removeItem("admin_mode");
+  } else {
+    const p = getAdminPass();
+    if (p) { document.body.classList.add("admin"); sessionStorage.setItem("admin_mode", "1"); }
+  }
+});
+if (sessionStorage.getItem("admin_mode") === "1") document.body.classList.add("admin");
+
+/* ================= INIT ================= */
+$("btnPost").addEventListener("click", postComment);
+loadComments();
+</script>
+
+</body>
+</html>
