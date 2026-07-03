@@ -5,36 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <title>旅行配信者たけさんの曲部屋</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>😈</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
 /* ================================================================
-   BASE — 幻想 / ドリーミー
+   BASE — ダーク / かわいい悪魔
 ================================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg1:   #eef2ff;
-  --bg2:   #f6edf9;
-  --bg3:   #e9f7ff;
-  --ink:   #453f5e;
-  --ink-2: #5b5478;
-  --sub:   #8b84a8;
-  --muted: #b3adc9;
-  --line:  rgba(120,110,170,0.16);
-  --line-2:rgba(120,110,170,0.28);
-  --sky:   #7cc0ff;
-  --lav:   #a99bff;
-  --rose:  #ff9ecb;
-  --mint:  #8fe6d0;
-  --accent:#8f7dff;
-  --card:  rgba(255,255,255,0.55);
-  --card-2:rgba(255,255,255,0.72);
-  --disp:  'Cormorant Garamond', serif;
-  --jp:    'Shippori Mincho', serif;
-  --ui:    'Zen Kaku Gothic New', -apple-system, 'Hiragino Sans', sans-serif;
+  --bg:     #0b0710;
+  --ink:    #f3e9f2;
+  --ink-2:  #d7c6d8;
+  --sub:    #a893b2;
+  --muted:  #6d5a78;
+  --line:   rgba(255,110,160,0.16);
+  --line-2: rgba(255,110,160,0.32);
+  --devil:  #ff466e;
+  --devil-2:#ff85a6;
+  --purple: #a94dff;
+  --gold:   #ffc94d;
+  --card:   rgba(255,255,255,0.035);
+  --card-2: rgba(255,255,255,0.06);
+  --disp:   'Baloo 2', 'Zen Maru Gothic', cursive;
+  --jp:     'Zen Maru Gothic', sans-serif;
+  --ui:     'Zen Kaku Gothic New', -apple-system, 'Hiragino Sans', sans-serif;
   --player-h: 96px;
 }
 
@@ -46,333 +43,196 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(1200px 700px at 12% -8%, #ffffff 0%, transparent 55%),
-    radial-gradient(900px 600px at 100% 0%, #e7f1ff 0%, transparent 55%),
-    linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 48%, var(--bg3) 100%);
+    radial-gradient(900px 620px at 50% -12%, rgba(255,70,110,0.22), transparent 60%),
+    radial-gradient(760px 520px at 92% 108%, rgba(169,77,255,0.18), transparent 60%),
+    radial-gradient(680px 520px at 4% 40%, rgba(255,70,110,0.10), transparent 60%),
+    linear-gradient(165deg, #0d0713 0%, #120a18 55%, #0a0610 100%);
   background-attachment: fixed;
 }
 
-::selection { background: rgba(143,125,255,0.28); color: var(--ink); }
+::selection { background: rgba(255,70,110,0.35); color: #fff; }
 
 ::-webkit-scrollbar { width: 11px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb {
-  background: rgba(143,125,255,0.35);
-  border-radius: 6px;
-  border: 3px solid transparent;
-  background-clip: padding-box;
-}
-::-webkit-scrollbar-thumb:hover { background: rgba(143,125,255,0.6); background-clip: padding-box; }
+::-webkit-scrollbar-thumb { background: rgba(255,70,110,0.32); border-radius: 6px; border: 3px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,70,110,0.55); background-clip: padding-box; }
 
 /* ================================================================
-   ATMOSPHERE — 浮遊するミスト
+   ATMOSPHERE
 ================================================================ */
 .atmosphere { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-.blob {
-  position: absolute;
-  width: 62vmax; height: 62vmax;
-  border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.5;
-  will-change: transform;
-  mix-blend-mode: multiply;
-}
-.blob-a { background: radial-gradient(circle, rgba(124,192,255,0.55), transparent 62%); top: -26vmax; left: -18vmax; animation: drift-a 30s ease-in-out infinite alternate; }
-.blob-b { background: radial-gradient(circle, rgba(255,158,203,0.5),  transparent 62%); bottom: -30vmax; right: -18vmax; animation: drift-b 36s ease-in-out infinite alternate; }
-.blob-c { background: radial-gradient(circle, rgba(169,155,255,0.45), transparent 62%); top: 28%; left: 52%; width: 44vmax; height: 44vmax; animation: drift-a 44s ease-in-out infinite alternate-reverse; }
-.blob-d { background: radial-gradient(circle, rgba(143,230,208,0.4),  transparent 62%); top: 55%; left: -10vmax; width: 38vmax; height: 38vmax; animation: drift-b 40s ease-in-out infinite alternate; }
-@keyframes drift-a { from { transform: translate(0,0) scale(1); } to { transform: translate(10vmax, 7vmax) scale(1.18); } }
+.blob { position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(100px); opacity: 0.45; }
+.blob-a { background: radial-gradient(circle, rgba(255,70,110,0.6), transparent 62%); top: -30vmax; left: -18vmax; animation: drift-a 30s ease-in-out infinite alternate; }
+.blob-b { background: radial-gradient(circle, rgba(169,77,255,0.55), transparent 62%); bottom: -32vmax; right: -18vmax; animation: drift-b 36s ease-in-out infinite alternate; }
+.blob-c { background: radial-gradient(circle, rgba(255,70,110,0.4), transparent 62%); top: 40%; left: 55%; width: 42vmax; height: 42vmax; animation: drift-a 44s ease-in-out infinite alternate-reverse; }
+@keyframes drift-a { from { transform: translate(0,0) scale(1); } to { transform: translate(10vmax,7vmax) scale(1.18); } }
 @keyframes drift-b { from { transform: translate(0,0) scale(1.1); } to { transform: translate(-9vmax,-6vmax) scale(0.92); } }
-
-/* きらめく粒子 */
 .stars { position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background-image:
-    radial-gradient(1.5px 1.5px at 20% 30%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1.5px 1.5px at 70% 20%, rgba(169,155,255,0.8), transparent),
-    radial-gradient(1px 1px at 40% 70%, rgba(124,192,255,0.9), transparent),
-    radial-gradient(1.5px 1.5px at 85% 60%, rgba(255,158,203,0.8), transparent),
-    radial-gradient(1px 1px at 55% 45%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1px 1px at 12% 82%, rgba(169,155,255,0.7), transparent);
-  animation: twinkle 6s ease-in-out infinite;
-}
-@keyframes twinkle { 0%,100% { opacity: 0.55; } 50% { opacity: 1; } }
+    radial-gradient(1.6px 1.6px at 18% 26%, rgba(255,180,200,0.9), transparent),
+    radial-gradient(1.4px 1.4px at 72% 18%, rgba(200,150,255,0.85), transparent),
+    radial-gradient(1.2px 1.2px at 42% 66%, rgba(255,120,160,0.85), transparent),
+    radial-gradient(1.6px 1.6px at 86% 58%, rgba(255,200,120,0.8), transparent),
+    radial-gradient(1.2px 1.2px at 56% 40%, rgba(255,255,255,0.85), transparent);
+  animation: twinkle 6s ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
 
 /* ================================================================
    NAV
 ================================================================ */
-.topnav {
-  position: relative; z-index: 6;
-  display: flex; align-items: center; justify-content: space-between;
-  max-width: 1080px; margin: 0 auto;
-  padding: 22px clamp(16px,4vw,34px) 0;
-}
-.brand-mini {
-  font-family: var(--disp); font-size: 1.5rem; font-weight: 500;
-  letter-spacing: 0.04em; color: var(--ink);
-  display: flex; align-items: center; gap: 8px;
-}
-.brand-mini .star { color: var(--accent); font-size: 1.1rem; }
+.topnav { position: relative; z-index: 6; display: flex; align-items: center; justify-content: space-between;
+  max-width: 1080px; margin: 0 auto; padding: 22px clamp(16px,4vw,34px) 0; }
+.brand-mini { font-family: var(--disp); font-size: 1.35rem; font-weight: 700; letter-spacing: 0.02em; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+.brand-mini .star { font-size: 1.3rem; filter: drop-shadow(0 0 10px rgba(255,70,110,0.7)); }
 .nav-links { display: flex; gap: 8px; }
-.nav-links a {
-  font-family: var(--ui); font-size: 0.8rem; font-weight: 500;
-  color: var(--ink-2); text-decoration: none;
-  padding: 9px 18px; border-radius: 999px;
-  border: 1px solid var(--line-2);
-  background: var(--card);
-  backdrop-filter: blur(10px);
-  transition: all 0.2s;
-}
-.nav-links a:hover { color: #fff; background: var(--accent); border-color: transparent; box-shadow: 0 8px 22px rgba(143,125,255,0.35); transform: translateY(-1px); }
-.nav-links a.active { color: var(--accent); border-color: var(--accent); }
+.nav-links a { font-family: var(--ui); font-size: 0.8rem; font-weight: 700; color: var(--ink-2); text-decoration: none;
+  padding: 9px 18px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--card); backdrop-filter: blur(10px); transition: all 0.2s; }
+.nav-links a:hover { color: #fff; background: var(--devil); border-color: transparent; box-shadow: 0 8px 22px rgba(255,70,110,0.4); transform: translateY(-1px); }
+.nav-links a.active { color: var(--devil-2); border-color: var(--devil); }
 
 /* ================================================================
-   HERO — ダイナミック
+   HERO — 大きな悪魔
 ================================================================ */
-header {
-  position: relative; z-index: 1;
-  padding: clamp(40px, 8vw, 90px) 20px clamp(30px,5vw,50px);
-  text-align: center;
+header { position: relative; z-index: 1; padding: clamp(20px,4vw,44px) 20px clamp(24px,4vw,40px); text-align: center; }
+
+.devil-art {
+  width: clamp(190px, 36vw, 300px); height: auto; display: block; margin: 0 auto 6px;
+  filter: drop-shadow(0 18px 46px rgba(255,50,90,0.5));
+  animation: bob 4.5s ease-in-out infinite;
 }
-.hero-mark {
-  font-size: 1.6rem; color: var(--accent);
-  filter: drop-shadow(0 0 18px rgba(143,125,255,0.6));
-  animation: floaty 5s ease-in-out infinite;
-  display: inline-block; margin-bottom: 10px;
-}
-@keyframes floaty { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-10px) rotate(6deg); } }
+@keyframes bob { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-14px) rotate(2deg); } }
+.devil-art .tail { transform-box: fill-box; transform-origin: left center; animation: wag 3s ease-in-out infinite; }
+@keyframes wag { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(8deg); } }
 
 .hero-big {
-  font-family: var(--disp);
-  font-weight: 400;
-  font-size: clamp(3.4rem, 15vw, 11rem);
-  line-height: 0.9;
-  letter-spacing: 0.01em;
-  background: linear-gradient(115deg, var(--sky) 0%, var(--lav) 45%, var(--rose) 100%);
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 12px 40px rgba(143,125,255,0.25));
-  position: relative;
-  animation: hue 18s linear infinite;
-}
-@keyframes hue { 50% { filter: drop-shadow(0 12px 46px rgba(255,158,203,0.3)) hue-rotate(-12deg); } }
-.hero-big .thin { font-style: italic; font-weight: 300; }
-
-.site-title {
-  font-family: var(--jp);
-  font-size: clamp(1.15rem, 4.4vw, 1.9rem);
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  padding-left: 0.22em;
-  color: var(--ink);
-  margin-top: 16px;
-}
-.tagline {
-  margin-top: 12px;
-  font-family: var(--disp);
-  font-style: italic;
-  font-size: clamp(0.95rem, 2.6vw, 1.25rem);
-  letter-spacing: 0.06em;
-  color: var(--sub);
-}
-
-/* ── ライブ統計 ── */
-.stats {
-  margin: 40px auto 0;
-  display: flex; justify-content: center; gap: 0;
-  max-width: 560px;
-  border-radius: 22px;
-  border: 1px solid var(--line-2);
-  background: var(--card-2);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 20px 50px -24px rgba(90,80,160,0.45);
-  overflow: hidden;
-}
-.stat { flex: 1; padding: 22px 8px 18px; position: relative; }
-.stat + .stat::before { content: ""; position: absolute; left: 0; top: 22%; bottom: 22%; width: 1px; background: var(--line); }
-.stat-value {
-  font-family: var(--disp); font-weight: 500;
-  font-size: clamp(1.7rem, 5vw, 2.5rem);
-  background: linear-gradient(120deg, var(--accent), var(--sky));
+  font-family: var(--disp); font-weight: 800;
+  font-size: clamp(3rem, 13vw, 8.5rem); line-height: 0.9; letter-spacing: 0.005em;
+  background: linear-gradient(115deg, var(--devil-2) 0%, var(--devil) 40%, var(--purple) 100%);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-  line-height: 1;
+  filter: drop-shadow(0 8px 30px rgba(255,60,100,0.4));
+  margin-top: 2px;
 }
-.stat-label {
-  margin-top: 8px;
-  font-size: 0.62rem; font-weight: 500;
-  letter-spacing: 0.28em; padding-left: 0.28em;
-  color: var(--muted); text-transform: uppercase;
-}
+.site-title { font-family: var(--jp); font-size: clamp(1.1rem, 4.2vw, 1.85rem); font-weight: 700; letter-spacing: 0.16em; padding-left: 0.16em; color: var(--ink); margin-top: 14px; }
+.tagline { margin-top: 10px; font-family: var(--disp); font-weight: 600; font-size: clamp(0.9rem, 2.6vw, 1.15rem); letter-spacing: 0.04em; color: var(--sub); }
+
+/* ── 統計 ── */
+.stats { margin: 34px auto 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0; max-width: 620px;
+  border-radius: 22px; border: 1px solid var(--line-2); background: var(--card-2); backdrop-filter: blur(16px);
+  box-shadow: 0 22px 54px -26px rgba(255,40,90,0.4); overflow: hidden; }
+.stat { flex: 1; min-width: 25%; padding: 20px 8px 17px; position: relative; }
+.stat + .stat::before { content: ""; position: absolute; left: 0; top: 22%; bottom: 22%; width: 1px; background: var(--line); }
+.stat-value { font-family: var(--disp); font-weight: 800; font-size: clamp(1.5rem, 4.6vw, 2.3rem);
+  background: linear-gradient(120deg, var(--devil-2), var(--gold)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+.stat-label { margin-top: 8px; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.24em; padding-left: 0.24em; color: var(--muted); text-transform: uppercase; }
 
 /* ================================================================
    MAIN / SEARCH
 ================================================================ */
 main { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 18px 16px calc(var(--player-h) + 80px); }
 
-.search-wrap { position: sticky; top: 0; z-index: 20; padding: 16px 0 14px;
-  background: linear-gradient(to bottom, var(--bg2) 68%, transparent); }
+.search-wrap { position: sticky; top: 0; z-index: 20; padding: 16px 0 14px; background: linear-gradient(to bottom, var(--bg) 66%, transparent); }
 .search-box { position: relative; }
-.search-box::before {
-  content: "✦"; position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
-  color: var(--accent); pointer-events: none; font-size: 0.9rem;
-}
-#searchBox {
-  width: 100%; padding: 15px 20px 15px 46px;
-  background: var(--card-2); backdrop-filter: blur(12px);
-  border: 1px solid var(--line-2); border-radius: 999px;
-  color: var(--ink); font-family: var(--ui); font-size: 0.92rem; letter-spacing: 0.03em;
-  outline: none; transition: border-color 0.25s, box-shadow 0.25s;
-  box-shadow: 0 10px 30px -18px rgba(90,80,160,0.4);
-}
+.search-box::before { content: "😈"; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 1rem; opacity: 0.9; }
+#searchBox { width: 100%; padding: 15px 20px 15px 48px; background: var(--card-2); backdrop-filter: blur(12px);
+  border: 1px solid var(--line-2); border-radius: 999px; color: var(--ink); font-family: var(--ui); font-size: 0.92rem; letter-spacing: 0.03em;
+  outline: none; transition: border-color 0.25s, box-shadow 0.25s; }
 #searchBox::placeholder { color: var(--muted); }
-#searchBox:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(143,125,255,0.14), 0 12px 30px -16px rgba(143,125,255,0.5); }
+#searchBox:focus { border-color: var(--devil); box-shadow: 0 0 0 4px rgba(255,70,110,0.14); }
 .result-count { margin-top: 10px; font-size: 0.66rem; letter-spacing: 0.22em; color: var(--muted); text-align: right; padding-right: 6px; }
-.result-count b { color: var(--accent); font-weight: 700; }
+.result-count b { color: var(--devil-2); font-weight: 700; }
 
 /* ================================================================
    TRACK LIST
 ================================================================ */
 #songList { list-style: none; margin-top: 6px; display: flex; flex-direction: column; gap: 10px; }
-
-.song-item {
-  position: relative;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: var(--card);
-  backdrop-filter: blur(10px);
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
-  cursor: pointer;
-  overflow: hidden;
-}
-.song-item:hover { transform: translateY(-2px); border-color: var(--line-2); background: var(--card-2); box-shadow: 0 16px 34px -20px rgba(90,80,160,0.5); }
-.song-item::before {
-  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
-  background: linear-gradient(var(--accent), var(--sky));
-  transform: scaleY(0); transition: transform 0.25s; border-radius: 4px;
-}
+.song-item { position: relative; border: 1px solid var(--line); border-radius: 18px; background: var(--card); backdrop-filter: blur(10px);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background 0.2s; cursor: pointer; overflow: hidden; }
+.song-item:hover { transform: translateY(-2px); border-color: var(--line-2); background: var(--card-2); box-shadow: 0 16px 34px -20px rgba(255,50,90,0.55); }
+.song-item::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(var(--devil), var(--purple)); transform: scaleY(0); transition: transform 0.25s; border-radius: 4px; }
 .song-item:hover::before, .song-item.current::before { transform: scaleY(1); }
-.song-item.current {
-  border-color: transparent;
-  background: linear-gradient(var(--card-2), var(--card-2)) padding-box,
-              linear-gradient(120deg, var(--sky), var(--lav), var(--rose)) border-box;
-  border: 1px solid transparent;
-  box-shadow: 0 18px 40px -20px rgba(143,125,255,0.55);
-}
-
+.song-item.current { border-color: transparent;
+  background: linear-gradient(var(--bg), var(--bg)) padding-box, linear-gradient(120deg, var(--devil), var(--purple)) border-box; border: 1px solid transparent;
+  box-shadow: 0 18px 40px -20px rgba(255,70,110,0.6); }
 .song-row { display: flex; align-items: center; gap: 16px; padding: 15px 15px 15px 20px; user-select: none; }
-
-.song-num { font-family: var(--disp); font-size: 1.15rem; color: var(--muted); min-width: 30px; text-align: center; flex-shrink: 0; transition: color 0.15s; }
-
+.song-num { font-family: var(--disp); font-weight: 700; font-size: 1.05rem; color: var(--muted); min-width: 30px; text-align: center; flex-shrink: 0; transition: color 0.15s; }
 .song-main { flex: 1; min-width: 0; }
-.song-title { font-family: var(--jp); font-size: 1rem; font-weight: 500; letter-spacing: 0.02em; color: var(--ink);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: color 0.15s; }
+.song-title { font-family: var(--jp); font-size: 1rem; font-weight: 700; letter-spacing: 0.01em; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: color 0.15s; }
 .song-meta { margin-top: 5px; display: flex; gap: 16px; font-size: 0.68rem; color: var(--sub); letter-spacing: 0.04em; }
-.song-meta .m-play::before { content: "♪ "; color: var(--sky); }
-.song-meta .m-dl::before   { content: "⇩ "; color: var(--rose); }
+.song-meta .m-play::before { content: "▶ "; color: var(--devil-2); }
+.song-meta .m-dl::before   { content: "⇩ "; color: var(--gold); }
 .song-meta span { opacity: 0; transition: opacity 0.4s; }
 .song-meta span.visible { opacity: 1; }
-
-.song-item.current .song-num, .song-item.current .song-title { color: var(--accent); }
-
-/* EQ */
+.song-item.current .song-num, .song-item.current .song-title { color: var(--devil-2); }
 .eq { display: none; align-items: flex-end; gap: 3px; height: 17px; flex-shrink: 0; }
 .song-item.current.playing .eq { display: flex; }
-.eq i { width: 3px; border-radius: 2px; background: linear-gradient(var(--accent), var(--sky)); animation: eq 0.85s ease-in-out infinite; }
+.eq i { width: 3px; border-radius: 2px; background: linear-gradient(var(--devil-2), var(--purple)); animation: eq 0.85s ease-in-out infinite; }
 .eq i:nth-child(1) { height: 55%; animation-delay: -0.45s; }
 .eq i:nth-child(2) { height: 100%; animation-delay: -0.15s; }
 .eq i:nth-child(3) { height: 40%; animation-delay: -0.65s; }
 .eq i:nth-child(4) { height: 78%; animation-delay: -0.3s; }
 @keyframes eq { 0%,100% { transform: scaleY(0.25); } 50% { transform: scaleY(1); } }
-
-/* row buttons */
-.btn-row-play {
-  flex-shrink: 0; width: 42px; height: 42px; border-radius: 50%;
-  border: 1px solid var(--line-2); background: rgba(255,255,255,0.6);
-  color: var(--accent); font-size: 0.7rem; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.18s;
-}
-.btn-row-play:hover { border-color: transparent; background: var(--accent); color: #fff; box-shadow: 0 8px 20px rgba(143,125,255,0.4); transform: scale(1.06); }
-.song-item.current.playing .btn-row-play { background: linear-gradient(135deg, var(--accent), var(--sky)); border-color: transparent; color: #fff; box-shadow: 0 8px 22px rgba(143,125,255,0.5); }
-
-.btn-row-dl {
-  flex-shrink: 0; width: 42px; height: 42px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--muted); font-size: 1.15rem; text-decoration: none;
-  transition: color 0.15s, transform 0.12s, background 0.15s;
-}
-.btn-row-dl:hover { color: var(--rose); background: rgba(255,158,203,0.15); transform: translateY(2px); }
-
-/* empty */
+.btn-row-play { flex-shrink: 0; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-2); background: rgba(255,255,255,0.04); color: var(--devil-2); font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.18s; }
+.btn-row-play:hover { border-color: transparent; background: var(--devil); color: #fff; box-shadow: 0 8px 20px rgba(255,70,110,0.45); transform: scale(1.06); }
+.song-item.current.playing .btn-row-play { background: linear-gradient(135deg, var(--devil), var(--purple)); border-color: transparent; color: #fff; box-shadow: 0 8px 22px rgba(255,70,110,0.5); }
+.btn-row-dl { flex-shrink: 0; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 1.15rem; text-decoration: none; transition: color 0.15s, transform 0.12s, background 0.15s; }
+.btn-row-dl:hover { color: var(--gold); background: rgba(255,201,77,0.14); transform: translateY(2px); }
 .empty { display: none; text-align: center; color: var(--muted); padding: 90px 0; font-family: var(--jp); font-size: 0.9rem; letter-spacing: 0.2em; }
 .empty.show { display: block; }
-.empty::before { content: "✦"; display: block; font-size: 2.6rem; margin-bottom: 16px; color: var(--line-2); }
+.empty::before { content: "😈"; display: block; font-size: 2.8rem; margin-bottom: 16px; opacity: 0.5; }
 
 /* ================================================================
    FOOTER
 ================================================================ */
 footer { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 10px 20px calc(var(--player-h) + 50px); }
-.howto { border: 1px solid var(--line-2); background: var(--card-2); backdrop-filter: blur(12px); padding: 26px 30px; border-radius: 22px; box-shadow: 0 20px 50px -28px rgba(90,80,160,0.4); }
-.howto h2 { font-family: var(--disp); font-size: 1.5rem; font-weight: 500; color: var(--ink); margin-bottom: 14px; }
+.howto { border: 1px solid var(--line-2); background: var(--card-2); backdrop-filter: blur(12px); padding: 26px 30px; border-radius: 22px; box-shadow: 0 20px 50px -28px rgba(255,50,90,0.35); }
+.howto h2 { font-family: var(--disp); font-size: 1.5rem; font-weight: 700; color: var(--ink); margin-bottom: 14px; }
 .howto ul { list-style: none; }
-.howto li { font-size: 0.85rem; color: var(--ink-2); line-height: 2.1; letter-spacing: 0.02em; }
-.howto li b { color: var(--accent); font-weight: 700; }
-.copyright { text-align: center; margin-top: 30px; font-family: var(--disp); font-size: 0.95rem; letter-spacing: 0.1em; color: var(--sub); }
-.copyright .s { color: var(--accent); }
+.howto li { font-size: 0.85rem; color: var(--ink-2); line-height: 2.1; letter-spacing: 0.01em; }
+.howto li b { color: var(--devil-2); font-weight: 700; }
+.copyright { text-align: center; margin-top: 30px; font-family: var(--disp); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.06em; color: var(--sub); }
+.copyright .s { filter: drop-shadow(0 0 8px rgba(255,70,110,0.6)); }
 
 /* ================================================================
    PLAYER BAR
 ================================================================ */
-#playerBar {
-  position: fixed; left: 0; right: 0; bottom: 0; height: var(--player-h); z-index: 100;
-  background: rgba(255,255,255,0.72);
-  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-  border-top: 1px solid var(--line-2);
-  box-shadow: 0 -18px 50px -30px rgba(90,80,160,0.6);
-  transform: translateY(120%);
-  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
-}
+#playerBar { position: fixed; left: 0; right: 0; bottom: 0; height: var(--player-h); z-index: 100;
+  background: rgba(14,8,18,0.82); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid var(--line-2); box-shadow: 0 -18px 50px -30px rgba(255,50,90,0.5);
+  transform: translateY(120%); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
 #playerBar.active { transform: translateY(0); }
-
 #viz { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.5; pointer-events: none; }
-
 .seek-wrap { position: absolute; top: -7px; left: 0; right: 0; height: 14px; cursor: pointer; z-index: 3; }
 #seek { -webkit-appearance: none; appearance: none; width: 100%; height: 100%; background: transparent; cursor: pointer; display: block; }
 #seek::-webkit-slider-runnable-track { height: 4px; margin-top: 5px; border-radius: 4px;
-  background: linear-gradient(to right, var(--accent) 0%, var(--sky) var(--prog,0%), rgba(120,110,170,0.2) var(--prog,0%), rgba(120,110,170,0.2) 100%); }
-#seek::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; margin-top: -5px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(143,125,255,0.25); opacity: 0; transition: opacity 0.2s; }
+  background: linear-gradient(to right, var(--devil) 0%, var(--purple) var(--prog,0%), rgba(255,110,160,0.18) var(--prog,0%), rgba(255,110,160,0.18) 100%); }
+#seek::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; margin-top: -5px; border-radius: 50%; background: var(--devil); box-shadow: 0 0 0 4px rgba(255,70,110,0.25); opacity: 0; transition: opacity 0.2s; }
 .seek-wrap:hover #seek::-webkit-slider-thumb { opacity: 1; }
-#seek::-moz-range-track { height: 4px; border-radius: 4px; background: rgba(120,110,170,0.2); }
-#seek::-moz-range-progress { height: 4px; border-radius: 4px; background: var(--accent); }
-#seek::-moz-range-thumb { width: 14px; height: 14px; border: none; border-radius: 50%; background: var(--accent); opacity: 0; }
+#seek::-moz-range-track { height: 4px; border-radius: 4px; background: rgba(255,110,160,0.18); }
+#seek::-moz-range-progress { height: 4px; border-radius: 4px; background: var(--devil); }
+#seek::-moz-range-thumb { width: 14px; height: 14px; border: none; border-radius: 50%; background: var(--devil); opacity: 0; }
 .seek-wrap:hover #seek::-moz-range-thumb { opacity: 1; }
-
 .player-inner { position: relative; z-index: 2; height: 100%; max-width: 1080px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 18px; }
-
 .np { flex: 1; min-width: 0; }
-.np-label { font-family: var(--disp); font-style: italic; font-size: 0.8rem; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 2px; }
-.np-title { font-family: var(--jp); font-size: 0.95rem; font-weight: 500; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.np-label { font-family: var(--disp); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.04em; color: var(--devil-2); margin-bottom: 2px; }
+.np-title { font-family: var(--jp); font-size: 0.95rem; font-weight: 700; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .np-time { margin-top: 3px; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.06em; }
 .np-time b { color: var(--sub); font-weight: 500; }
-
 .controls { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .pbtn { background: transparent; border: none; color: var(--sub); cursor: pointer; font-size: 1.05rem; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: color 0.15s, background 0.15s; position: relative; }
-.pbtn:hover { color: var(--accent); background: rgba(143,125,255,0.12); }
-.pbtn.on { color: var(--accent); }
-.pbtn.on::after { content: ""; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+.pbtn:hover { color: var(--devil-2); background: rgba(255,70,110,0.12); }
+.pbtn.on { color: var(--devil-2); }
+.pbtn.on::after { content: ""; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--devil); }
 .pbtn .sup { position: absolute; top: 5px; right: 6px; font-size: 0.5rem; }
-
-#btnPlay { width: 54px; height: 54px; border: none; background: linear-gradient(135deg, var(--accent), var(--sky)); color: #fff; font-size: 0.9rem; border-radius: 50%; box-shadow: 0 10px 26px rgba(143,125,255,0.45); transition: transform 0.12s, box-shadow 0.2s; }
-#btnPlay:hover { transform: scale(1.06); box-shadow: 0 14px 34px rgba(143,125,255,0.6); }
+#btnPlay { width: 54px; height: 54px; border: none; background: linear-gradient(135deg, var(--devil), var(--purple)); color: #fff; font-size: 0.9rem; border-radius: 50%; box-shadow: 0 10px 26px rgba(255,70,110,0.5); transition: transform 0.12s, box-shadow 0.2s; }
+#btnPlay:hover { transform: scale(1.06); box-shadow: 0 14px 34px rgba(255,70,110,0.65); }
 #btnPlay:active { transform: scale(0.96); }
-
 .side-controls { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 #vol { -webkit-appearance: none; appearance: none; width: 86px; height: 4px; border-radius: 4px;
-  background: linear-gradient(to right, var(--accent) 0%, var(--sky) var(--vp,100%), rgba(120,110,170,0.2) var(--vp,100%), rgba(120,110,170,0.2) 100%); cursor: pointer; outline: none; }
-#vol::-webkit-slider-thumb { -webkit-appearance: none; width: 13px; height: 13px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(143,125,255,0.2); }
-#vol::-moz-range-thumb { width: 13px; height: 13px; border: none; border-radius: 50%; background: var(--accent); }
+  background: linear-gradient(to right, var(--devil) 0%, var(--purple) var(--vp,100%), rgba(255,110,160,0.18) var(--vp,100%), rgba(255,110,160,0.18) 100%); cursor: pointer; outline: none; }
+#vol::-webkit-slider-thumb { -webkit-appearance: none; width: 13px; height: 13px; border-radius: 50%; background: var(--devil); box-shadow: 0 0 0 3px rgba(255,70,110,0.2); }
+#vol::-moz-range-thumb { width: 13px; height: 13px; border: none; border-radius: 50%; background: var(--devil); }
 #npDl { color: var(--sub); font-size: 1.2rem; text-decoration: none; transition: color 0.15s; }
-#npDl:hover { color: var(--rose); }
-
+#npDl:hover { color: var(--gold); }
 @media (max-width: 640px) {
   .side-controls #vol { display: none; }
   .np-time { display: none; }
@@ -381,6 +241,7 @@ footer { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; paddi
   #btnPlay { width: 48px; height: 48px; }
   .song-meta { gap: 12px; }
   .nav-links a { padding: 8px 14px; font-size: 0.74rem; }
+  .stat { min-width: 50%; }
 }
 </style>
 </head>
@@ -390,12 +251,11 @@ footer { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; paddi
   <div class="blob blob-a"></div>
   <div class="blob blob-b"></div>
   <div class="blob blob-c"></div>
-  <div class="blob blob-d"></div>
 </div>
 <div class="stars"></div>
 
 <nav class="topnav">
-  <div class="brand-mini"><span class="star">✦</span> Take's Sound</div>
+  <div class="brand-mini"><span class="star">😈</span> Take's Sound</div>
   <div class="nav-links">
     <a href="index.html" class="active">Music</a>
     <a href="comments.html">Comments</a>
@@ -403,24 +263,62 @@ footer { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; paddi
 </nav>
 
 <header>
-  <span class="hero-mark">✦</span>
-  <div class="hero-big">Sound <span class="thin">Vault</span></div>
+  <!-- ============ 大きなかわいい悪魔 ============ -->
+  <svg class="devil-art" viewBox="0 0 240 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="かわいい悪魔">
+    <defs>
+      <radialGradient id="body" cx="40%" cy="32%" r="78%">
+        <stop offset="0%" stop-color="#ff8ba9"/><stop offset="52%" stop-color="#ff4d76"/><stop offset="100%" stop-color="#df2f5c"/>
+      </radialGradient>
+      <linearGradient id="horn" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#fff1d9"/><stop offset="100%" stop-color="#ffcf9b"/>
+      </linearGradient>
+      <radialGradient id="cheek" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ff9fbb"/><stop offset="100%" stop-color="#ff9fbb" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="soft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
+    </defs>
+    <ellipse cx="120" cy="132" rx="96" ry="102" fill="#ff2d68" opacity="0.16" filter="url(#soft)"/>
+    <!-- tail -->
+    <g class="tail">
+      <path d="M150 200 C 206 202 214 150 184 136 C 208 156 182 186 150 176 Z" fill="url(#body)"/>
+      <path d="M188 120 c 10 -6 22 -2 22 10 c 0 8 -8 12 -14 10 c 2 8 -6 14 -14 10 c -8 -4 -6 -14 0 -18 c -4 -8 6 -16 14 -12 z" fill="#df2f5c"/>
+    </g>
+    <!-- wings -->
+    <path d="M72 152 C 30 118 16 150 30 172 C 40 152 58 154 70 168 Z" fill="#a94dff" opacity="0.9"/>
+    <path d="M168 152 C 210 118 224 150 210 172 C 200 152 182 154 170 168 Z" fill="#a94dff" opacity="0.9"/>
+    <!-- body -->
+    <path d="M84 168 C 84 214 98 236 120 236 C 142 236 156 214 156 168 Z" fill="url(#body)"/>
+    <circle cx="80" cy="192" r="13" fill="url(#body)"/>
+    <circle cx="160" cy="192" r="13" fill="url(#body)"/>
+    <!-- horns -->
+    <path d="M92 68 C 80 42 84 24 72 12 C 98 20 106 46 108 64 Z" fill="url(#horn)" stroke="#e8b98a" stroke-width="1.4"/>
+    <path d="M148 68 C 160 42 156 24 168 12 C 142 20 134 46 132 64 Z" fill="url(#horn)" stroke="#e8b98a" stroke-width="1.4"/>
+    <!-- head -->
+    <circle cx="120" cy="100" r="60" fill="url(#body)"/>
+    <!-- blush -->
+    <ellipse cx="90" cy="120" rx="15" ry="9" fill="url(#cheek)"/>
+    <ellipse cx="150" cy="120" rx="15" ry="9" fill="url(#cheek)"/>
+    <!-- eyes -->
+    <ellipse cx="99" cy="98" rx="12.5" ry="15.5" fill="#3a0d1f"/>
+    <ellipse cx="141" cy="98" rx="12.5" ry="15.5" fill="#3a0d1f"/>
+    <circle cx="103" cy="92" r="4.4" fill="#fff"/>
+    <circle cx="145" cy="92" r="4.4" fill="#fff"/>
+    <circle cx="95" cy="103" r="2.2" fill="#fff" opacity="0.85"/>
+    <circle cx="137" cy="103" r="2.2" fill="#fff" opacity="0.85"/>
+    <!-- smile + fang -->
+    <path d="M106 121 Q 120 135 134 121" fill="none" stroke="#3a0d1f" stroke-width="3.6" stroke-linecap="round"/>
+    <path d="M115 125 l4 8 4 -8 z" fill="#fff"/>
+  </svg>
+
+  <div class="hero-big">Sound Vault</div>
   <h1 class="site-title">旅行配信者たけさんの曲部屋</h1>
-  <p class="tagline">free streaming &amp; download — 49 original tracks</p>
+  <p class="tagline">free streaming &amp; download — 49 devil tracks</p>
 
   <div class="stats">
-    <div class="stat">
-      <div class="stat-value" id="statTracks">--</div>
-      <div class="stat-label">Tracks</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value" id="statPlays">--</div>
-      <div class="stat-label">Plays</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value" id="statDls">--</div>
-      <div class="stat-label">Downloads</div>
-    </div>
+    <div class="stat"><div class="stat-value" id="statTracks">--</div><div class="stat-label">Tracks</div></div>
+    <div class="stat"><div class="stat-value" id="statPlays">--</div><div class="stat-label">Plays</div></div>
+    <div class="stat"><div class="stat-value" id="statDls">--</div><div class="stat-label">Downloads</div></div>
+    <div class="stat"><div class="stat-value" id="statVisitors">--</div><div class="stat-label">Visitors</div></div>
   </div>
 </header>
 
@@ -444,19 +342,17 @@ footer { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; paddi
       <li><b>⇩</b> でMP3ファイルを無料ダウンロードできます。</li>
       <li>下のプレイヤーで <b>前へ / 次へ / シャッフル / リピート</b>・シークバー・音量を操作できます。</li>
       <li>キーボードの <b>スペースキー</b> で再生 / 一時停止。</li>
-      <li>曲名の下の数字 … <b>♪</b> みんなの再生回数 / <b>⇩</b> みんなのダウンロード回数。</li>
-      <li>ご感想は <b><a href="comments.html" style="color:var(--rose)">コメントページ</a></b> へどうぞ。</li>
+      <li>曲名の下の数字 … <b>▶</b> みんなの再生回数 / <b>⇩</b> みんなのダウンロード回数。</li>
+      <li>ご感想は <b><a href="comments.html" style="color:var(--gold)">コメントページ</a></b> へどうぞ 😈</li>
     </ul>
   </div>
-  <p class="copyright"><span class="s">✦</span> © 2026 旅行配信者たけさん <span class="s">✦</span></p>
+  <p class="copyright"><span class="s">😈</span> © 2026 旅行配信者たけさん <span class="s">😈</span></p>
 </footer>
 
 <!-- ================= PLAYER BAR ================= -->
 <div id="playerBar">
   <canvas id="viz"></canvas>
-  <div class="seek-wrap">
-    <input type="range" id="seek" min="0" max="100" step="0.1" value="0">
-  </div>
+  <div class="seek-wrap"><input type="range" id="seek" min="0" max="100" step="0.1" value="0"></div>
   <div class="player-inner">
     <div class="np">
       <div class="np-label">Now Playing</div>
@@ -504,28 +400,24 @@ const trackPath = t => "music/" + encodeURIComponent(t) + ".mp3";
    STATE
 ================================================================ */
 const audio = document.getElementById("player");
-let currentIndex = -1;
-let isPlaying    = false;
-let shuffle      = false;
-let repeatMode   = "all";          // off | all | one
-let seeking      = false;
-const countedPlays = new Set();    // セッション中の再生カウント重複防止
+let currentIndex = -1, isPlaying = false, shuffle = false, repeatMode = "all", seeking = false;
+const countedPlays = new Set();
 
 /* ================================================================
-   SUPABASE — DL数 / 再生数（play:: プレフィクスで同居）
+   SUPABASE — DL数 / 再生数 / 訪問者数（プレフィクスで同居）
 ================================================================ */
 const SUPABASE_URL = "https://mbviclfaijldherrtmyk.supabase.co";
 const SUPABASE_KEY = "sb_publishable_EK-rH_HBQIJKmnhNgEa6Iw_7_k4cdqu";
 const PLAY_PREFIX  = "play::";
+const VISIT_KEY    = "pv::visitors";
 
-let dlCounts = {}, playCounts = {};
+let dlCounts = {}, playCounts = {}, visitorCount = 0;
 
 const sbHeaders = {
   "apikey": SUPABASE_KEY,
   "Authorization": "Bearer " + SUPABASE_KEY,
   "Content-Type": "application/json"
 };
-
 const SONG_SET = new Set(SONGS);
 
 async function fetchAllCounts() {
@@ -535,10 +427,11 @@ async function fetchAllCounts() {
     if (Array.isArray(rows)) {
       rows.forEach(r => {
         if (typeof r.title !== "string") return;
-        if (r.title.startsWith(PLAY_PREFIX)) {
+        if (r.title === VISIT_KEY) { visitorCount = r.count; }
+        else if (r.title.startsWith(PLAY_PREFIX)) {
           const t = r.title.slice(PLAY_PREFIX.length);
           if (SONG_SET.has(t)) playCounts[t] = r.count;
-        } else if (SONG_SET.has(r.title)) {   // 未知/テスト行は集計から除外
+        } else if (SONG_SET.has(r.title)) {
           dlCounts[r.title] = r.count;
         }
       });
@@ -550,25 +443,27 @@ async function fetchAllCounts() {
 
 async function rpcIncrement(key) {
   const res = await fetch(SUPABASE_URL + "/rest/v1/rpc/increment_download", {
-    method: "POST", headers: sbHeaders,
-    body: JSON.stringify({ song_title: key })
+    method: "POST", headers: sbHeaders, body: JSON.stringify({ song_title: key })
   });
   return res.json();
 }
 
 async function incrementDownload(title) {
-  try {
-    const n = await rpcIncrement(title);
-    if (typeof n === "number") { dlCounts[title] = n; updateMeta(title); updateStats(); }
-  } catch (_) {}
+  try { const n = await rpcIncrement(title); if (typeof n === "number") { dlCounts[title] = n; updateMeta(title); updateStats(); } } catch (_) {}
 }
-
 async function incrementPlay(title) {
   if (countedPlays.has(title)) return;
   countedPlays.add(title);
+  try { const n = await rpcIncrement(PLAY_PREFIX + title); if (typeof n === "number") { playCounts[title] = n; updateMeta(title); updateStats(); } } catch (_) {}
+}
+
+/* 訪問者数：このブラウザで初回のみ +1（＝おおよその来場者数）*/
+async function trackVisit() {
   try {
-    const n = await rpcIncrement(PLAY_PREFIX + title);
-    if (typeof n === "number") { playCounts[title] = n; updateMeta(title); updateStats(); }
+    if (!localStorage.getItem("vault_visited")) {
+      const n = await rpcIncrement(VISIT_KEY);
+      if (typeof n === "number") { visitorCount = n; updateStats(); localStorage.setItem("vault_visited", "1"); }
+    }
   } catch (_) {}
 }
 
@@ -576,16 +471,17 @@ function updateMeta(title) {
   const li = rowOf(title);
   if (!li) return;
   const p = li.querySelector(".m-play"), d = li.querySelector(".m-dl");
-  if (playCounts[title] != null) { p.textContent = fmtNum(playCounts[title]) + " plays"; p.classList.add("visible"); }
-  if (dlCounts[title]   != null) { d.textContent = fmtNum(dlCounts[title])   + " DL";    d.classList.add("visible"); }
+  p.textContent = fmtNum(playCounts[title] || 0) + " 再生"; p.classList.add("visible");
+  d.textContent = fmtNum(dlCounts[title]   || 0) + " DL";   d.classList.add("visible");
 }
 function updateAllMeta() { SONGS.forEach(updateMeta); }
 
 function updateStats() {
   const sum = o => Object.values(o).reduce((a,b) => a+b, 0);
-  document.getElementById("statTracks").textContent = SONGS.length;
-  document.getElementById("statPlays").textContent  = fmtNum(sum(playCounts));
-  document.getElementById("statDls").textContent    = fmtNum(sum(dlCounts));
+  document.getElementById("statTracks").textContent   = SONGS.length;
+  document.getElementById("statPlays").textContent    = fmtNum(sum(playCounts));
+  document.getElementById("statDls").textContent      = fmtNum(sum(dlCounts));
+  document.getElementById("statVisitors").textContent = fmtNum(visitorCount);
 }
 
 const fmtNum = n => n >= 10000 ? (n/1000).toFixed(1) + "k" : String(n);
@@ -593,19 +489,15 @@ const fmtNum = n => n >= 10000 ? (n/1000).toFixed(1) + "k" : String(n);
 /* ================================================================
    LIST RENDER
 ================================================================ */
-function esc(s) {
-  return s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-}
-const rowOf = title =>
-  document.querySelector('.song-item[data-title="' + CSS.escape(title) + '"]');
+function esc(s) { return s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+const rowOf = title => document.querySelector('.song-item[data-title="' + CSS.escape(title) + '"]');
 
 function render(list) {
   const ul = document.getElementById("songList");
   const empty = document.getElementById("empty");
   ul.innerHTML = "";
   empty.classList.toggle("show", list.length === 0);
-  document.getElementById("resultCount").innerHTML =
-    "<b>" + list.length + "</b> / " + SONGS.length + " TRACKS";
+  document.getElementById("resultCount").innerHTML = "<b>" + list.length + "</b> / " + SONGS.length + " TRACKS";
 
   list.forEach(title => {
     const idx = SONGS.indexOf(title);
@@ -623,13 +515,8 @@ function render(list) {
         '<button class="btn-row-play" aria-label="再生">▶</button>' +
         '<a class="btn-row-dl" href="' + trackPath(title) + '" download="' + esc(title) + '.mp3" aria-label="ダウンロード">⇩</a>' +
       '</div>';
-
-    li.addEventListener("click", e => {
-      if (e.target.closest(".btn-row-dl")) return;   // DLは素通し
-      handleRowPlay(idx);
-    });
+    li.addEventListener("click", e => { if (e.target.closest(".btn-row-dl")) return; handleRowPlay(idx); });
     li.querySelector(".btn-row-dl").addEventListener("click", () => incrementDownload(title));
-
     ul.appendChild(li);
   });
 
@@ -637,10 +524,7 @@ function render(list) {
   updateAllMeta();
 }
 
-function handleRowPlay(idx) {
-  if (idx === currentIndex) togglePlay();
-  else playTrack(idx);
-}
+function handleRowPlay(idx) { if (idx === currentIndex) togglePlay(); else playTrack(idx); }
 
 function syncRowStates() {
   document.querySelectorAll(".song-item").forEach(li => {
@@ -654,146 +538,83 @@ function syncRowStates() {
 /* ================================================================
    PLAYER CORE
 ================================================================ */
-const bar     = document.getElementById("playerBar");
-const npTitle = document.getElementById("npTitle");
-const npDl    = document.getElementById("npDl");
-const btnPlay = document.getElementById("btnPlay");
-const seekEl  = document.getElementById("seek");
-const tCur    = document.getElementById("tCur");
-const tDur    = document.getElementById("tDur");
+const bar = document.getElementById("playerBar");
+const npTitle = document.getElementById("npTitle"), npDl = document.getElementById("npDl");
+const btnPlay = document.getElementById("btnPlay"), seekEl = document.getElementById("seek");
+const tCur = document.getElementById("tCur"), tDur = document.getElementById("tDur");
 
 function playTrack(idx) {
   currentIndex = idx;
   const title = SONGS[idx];
   audio.src = trackPath(title);
-  audio.play().then(() => {
-    ensureViz();
-    incrementPlay(title);
-  }).catch(() => {});
-
+  audio.play().then(() => { ensureViz(); incrementPlay(title); }).catch(() => {});
   bar.classList.add("active");
   npTitle.textContent = title;
   npDl.href = trackPath(title);
   npDl.setAttribute("download", title + ".mp3");
   setMediaSession(title);
 }
-
-function togglePlay() {
-  if (currentIndex < 0) { playTrack(0); return; }
-  if (audio.paused) audio.play().catch(() => {});
-  else audio.pause();
-}
-
+function togglePlay() { if (currentIndex < 0) { playTrack(0); return; } if (audio.paused) audio.play().catch(() => {}); else audio.pause(); }
 function nextTrack(auto) {
   if (!SONGS.length) return;
   let next;
-  if (shuffle) {
-    do { next = Math.floor(Math.random() * SONGS.length); }
-    while (SONGS.length > 1 && next === currentIndex);
-  } else {
-    next = currentIndex + 1;
-    if (next >= SONGS.length) {
-      if (auto && repeatMode === "off") { audio.pause(); return; }
-      next = 0;
-    }
-  }
+  if (shuffle) { do { next = Math.floor(Math.random() * SONGS.length); } while (SONGS.length > 1 && next === currentIndex); }
+  else { next = currentIndex + 1; if (next >= SONGS.length) { if (auto && repeatMode === "off") { audio.pause(); return; } next = 0; } }
   playTrack(next);
 }
-
 function prevTrack() {
   if (audio.currentTime > 3) { audio.currentTime = 0; return; }
-  let prev = shuffle
-    ? Math.floor(Math.random() * SONGS.length)
-    : (currentIndex - 1 + SONGS.length) % SONGS.length;
+  let prev = shuffle ? Math.floor(Math.random() * SONGS.length) : (currentIndex - 1 + SONGS.length) % SONGS.length;
   playTrack(prev);
 }
 
 audio.addEventListener("play",  () => { isPlaying = true;  btnPlay.textContent = "❚❚"; syncRowStates(); startViz(); });
 audio.addEventListener("pause", () => { isPlaying = false; btnPlay.textContent = "▶";  syncRowStates(); });
-audio.addEventListener("ended", () => {
-  if (repeatMode === "one") { audio.currentTime = 0; audio.play().catch(()=>{}); }
-  else nextTrack(true);
-});
-
-audio.addEventListener("loadedmetadata", () => {
-  seekEl.max = audio.duration || 0;
-  tDur.textContent = fmtTime(audio.duration);
-});
+audio.addEventListener("ended", () => { if (repeatMode === "one") { audio.currentTime = 0; audio.play().catch(()=>{}); } else nextTrack(true); });
+audio.addEventListener("loadedmetadata", () => { seekEl.max = audio.duration || 0; tDur.textContent = fmtTime(audio.duration); });
 audio.addEventListener("timeupdate", () => {
   if (seeking) return;
-  seekEl.value = audio.currentTime;
-  tCur.textContent = fmtTime(audio.currentTime);
+  seekEl.value = audio.currentTime; tCur.textContent = fmtTime(audio.currentTime);
   const p = audio.duration ? (audio.currentTime / audio.duration * 100) : 0;
   seekEl.style.setProperty("--prog", p + "%");
 });
-
 seekEl.addEventListener("input", () => {
-  seeking = true;
-  tCur.textContent = fmtTime(+seekEl.value);
+  seeking = true; tCur.textContent = fmtTime(+seekEl.value);
   const p = audio.duration ? (+seekEl.value / audio.duration * 100) : 0;
   seekEl.style.setProperty("--prog", p + "%");
 });
-seekEl.addEventListener("change", () => {
-  audio.currentTime = +seekEl.value;
-  seeking = false;
-});
+seekEl.addEventListener("change", () => { audio.currentTime = +seekEl.value; seeking = false; });
+const fmtTime = s => { if (!isFinite(s)) return "0:00"; const m = Math.floor(s / 60), r = Math.floor(s % 60); return m + ":" + String(r).padStart(2, "0"); };
 
-const fmtTime = s => {
-  if (!isFinite(s)) return "0:00";
-  const m = Math.floor(s / 60), r = Math.floor(s % 60);
-  return m + ":" + String(r).padStart(2, "0");
-};
-
-/* controls */
 btnPlay.addEventListener("click", togglePlay);
 document.getElementById("btnNext").addEventListener("click", () => nextTrack(false));
 document.getElementById("btnPrev").addEventListener("click", prevTrack);
-
-document.getElementById("btnShuffle").addEventListener("click", function () {
-  shuffle = !shuffle;
-  this.classList.toggle("on", shuffle);
-});
-
+document.getElementById("btnShuffle").addEventListener("click", function () { shuffle = !shuffle; this.classList.toggle("on", shuffle); });
 document.getElementById("btnRepeat").addEventListener("click", function () {
   repeatMode = repeatMode === "off" ? "all" : repeatMode === "all" ? "one" : "off";
   this.classList.toggle("on", repeatMode !== "off");
   this.innerHTML = repeatMode === "one" ? '⟳<span class="sup">1</span>' : "⟳";
 });
-document.getElementById("btnRepeat").classList.add("on"); // 初期値 all
+document.getElementById("btnRepeat").classList.add("on");
 
-/* volume */
 const volEl = document.getElementById("vol");
 const savedVol = localStorage.getItem("vault_vol");
 if (savedVol !== null) { audio.volume = +savedVol; volEl.value = savedVol; }
 volEl.style.setProperty("--vp", (volEl.value * 100) + "%");
-volEl.addEventListener("input", () => {
-  audio.volume = +volEl.value;
-  volEl.style.setProperty("--vp", (volEl.value * 100) + "%");
-  localStorage.setItem("vault_vol", volEl.value);
-});
+volEl.addEventListener("input", () => { audio.volume = +volEl.value; volEl.style.setProperty("--vp", (volEl.value * 100) + "%"); localStorage.setItem("vault_vol", volEl.value); });
 
-/* now-playing DL もカウント */
-npDl.addEventListener("click", () => {
-  if (currentIndex >= 0) incrementDownload(SONGS[currentIndex]);
-});
+npDl.addEventListener("click", () => { if (currentIndex >= 0) incrementDownload(SONGS[currentIndex]); });
 
-/* space key */
 document.addEventListener("keydown", e => {
   if (e.code !== "Space") return;
   const t = e.target;
   if (t.tagName === "INPUT" || t.tagName === "BUTTON" || t.tagName === "TEXTAREA") return;
-  e.preventDefault();
-  togglePlay();
+  e.preventDefault(); togglePlay();
 });
 
-/* Media Session（ロック画面・OSの再生コントロール対応）*/
 function setMediaSession(title) {
   if (!("mediaSession" in navigator)) return;
-  navigator.mediaSession.metadata = new MediaMetadata({
-    title: title,
-    artist: "旅行配信者たけさん",
-    album: "Take's Sound Vault"
-  });
+  navigator.mediaSession.metadata = new MediaMetadata({ title: title, artist: "旅行配信者たけさん", album: "Take's Sound Vault" });
   navigator.mediaSession.setActionHandler("play",  () => audio.play());
   navigator.mediaSession.setActionHandler("pause", () => audio.pause());
   navigator.mediaSession.setActionHandler("previoustrack", prevTrack);
@@ -801,63 +622,40 @@ function setMediaSession(title) {
 }
 
 /* ================================================================
-   VISUALIZER — Web Audio スペクトラム
+   VISUALIZER
 ================================================================ */
-const canvas = document.getElementById("viz");
-const cctx = canvas.getContext("2d");
+const canvas = document.getElementById("viz"), cctx = canvas.getContext("2d");
 let analyser = null, freq = null, vizOn = false;
-
 function ensureViz() {
   if (analyser) return;
   try {
     const AC = window.AudioContext || window.webkitAudioContext;
     const actx = new AC();
     const src = actx.createMediaElementSource(audio);
-    analyser = actx.createAnalyser();
-    analyser.fftSize = 256;
-    analyser.smoothingTimeConstant = 0.82;
-    src.connect(analyser);
-    analyser.connect(actx.destination);
+    analyser = actx.createAnalyser(); analyser.fftSize = 256; analyser.smoothingTimeConstant = 0.82;
+    src.connect(analyser); analyser.connect(actx.destination);
     freq = new Uint8Array(analyser.frequencyBinCount);
     if (actx.state === "suspended") actx.resume();
     audio.addEventListener("play", () => { if (actx.state === "suspended") actx.resume(); });
-  } catch (_) { /* 非対応環境では音はそのまま出る */ }
+  } catch (_) {}
 }
-
-function sizeCanvas() {
-  const dpr = window.devicePixelRatio || 1;
-  canvas.width  = canvas.offsetWidth * dpr;
-  canvas.height = canvas.offsetHeight * dpr;
-}
+function sizeCanvas() { const dpr = window.devicePixelRatio || 1; canvas.width = canvas.offsetWidth * dpr; canvas.height = canvas.offsetHeight * dpr; }
 window.addEventListener("resize", sizeCanvas);
-
-function startViz() {
-  if (vizOn) return;
-  vizOn = true;
-  sizeCanvas();
-  drawViz();
-}
-
+function startViz() { if (vizOn) return; vizOn = true; sizeCanvas(); drawViz(); }
 function drawViz() {
   if (!isPlaying && !analyser) { vizOn = false; return; }
   requestAnimationFrame(drawViz);
-
   const w = canvas.width, h = canvas.height;
   cctx.clearRect(0, 0, w, h);
   if (!analyser) return;
-
   analyser.getByteFrequencyData(freq);
-  const bars = 72;
-  const step = Math.floor(freq.length * 0.75 / bars);
-  const bw = w / bars;
-
+  const bars = 72, step = Math.floor(freq.length * 0.75 / bars), bw = w / bars;
   for (let i = 0; i < bars; i++) {
-    const v = freq[i * step] / 255;
-    const bh = v * h * 0.92;
+    const v = freq[i * step] / 255, bh = v * h * 0.92;
     const grad = cctx.createLinearGradient(0, h, 0, h - bh);
-    grad.addColorStop(0, "rgba(143,125,255,0.75)");
-    grad.addColorStop(0.6, "rgba(124,192,255,0.4)");
-    grad.addColorStop(1, "rgba(255,158,203,0.5)");
+    grad.addColorStop(0, "rgba(255,70,110,0.8)");
+    grad.addColorStop(0.6, "rgba(169,77,255,0.4)");
+    grad.addColorStop(1, "rgba(255,201,77,0.5)");
     cctx.fillStyle = grad;
     cctx.fillRect(i * bw + bw * 0.18, h - bh, bw * 0.64, bh);
   }
@@ -877,6 +675,7 @@ document.getElementById("searchBox").addEventListener("input", function () {
 render(SONGS);
 updateStats();
 fetchAllCounts();
+trackVisit();
 </script>
 
 </body>

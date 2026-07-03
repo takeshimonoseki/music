@@ -5,138 +5,127 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <title>コメント｜旅行配信者たけさんの曲部屋</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>😈</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --bg1:#eef2ff; --bg2:#f6edf9; --bg3:#e9f7ff;
-  --ink:#453f5e; --ink-2:#5b5478; --sub:#8b84a8; --muted:#b3adc9;
-  --line:rgba(120,110,170,0.16); --line-2:rgba(120,110,170,0.28);
-  --sky:#7cc0ff; --lav:#a99bff; --rose:#ff9ecb; --accent:#8f7dff;
-  --card:rgba(255,255,255,0.55); --card-2:rgba(255,255,255,0.72);
-  --disp:'Cormorant Garamond',serif; --jp:'Shippori Mincho',serif;
+  --bg:#0b0710; --ink:#f3e9f2; --ink-2:#d7c6d8; --sub:#a893b2; --muted:#6d5a78;
+  --line:rgba(255,110,160,0.16); --line-2:rgba(255,110,160,0.32);
+  --devil:#ff466e; --devil-2:#ff85a6; --purple:#a94dff; --gold:#ffc94d;
+  --card:rgba(255,255,255,0.035); --card-2:rgba(255,255,255,0.06);
+  --disp:'Baloo 2','Zen Maru Gothic',cursive; --jp:'Zen Maru Gothic',sans-serif;
   --ui:'Zen Kaku Gothic New',-apple-system,'Hiragino Sans',sans-serif;
 }
 html { scroll-behavior: smooth; }
-body {
-  font-family: var(--ui); color: var(--ink); min-height: 100vh; overflow-x: hidden;
+body { font-family: var(--ui); color: var(--ink); min-height: 100vh; overflow-x: hidden;
   background:
-    radial-gradient(1200px 700px at 12% -8%, #ffffff 0%, transparent 55%),
-    radial-gradient(900px 600px at 100% 0%, #e7f1ff 0%, transparent 55%),
-    linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 48%, var(--bg3) 100%);
-  background-attachment: fixed;
-}
-::selection { background: rgba(143,125,255,0.28); color: var(--ink); }
+    radial-gradient(900px 620px at 50% -12%, rgba(255,70,110,0.22), transparent 60%),
+    radial-gradient(760px 520px at 92% 108%, rgba(169,77,255,0.18), transparent 60%),
+    linear-gradient(165deg, #0d0713 0%, #120a18 55%, #0a0610 100%);
+  background-attachment: fixed; }
+::selection { background: rgba(255,70,110,0.35); color: #fff; }
 ::-webkit-scrollbar { width: 11px; }
-::-webkit-scrollbar-thumb { background: rgba(143,125,255,0.35); border-radius: 6px; border: 3px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb { background: rgba(255,70,110,0.32); border-radius: 6px; border: 3px solid transparent; background-clip: padding-box; }
 
 .atmosphere { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-.blob { position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(90px); opacity: 0.5; mix-blend-mode: multiply; }
-.blob-a { background: radial-gradient(circle, rgba(124,192,255,0.55), transparent 62%); top: -28vmax; left: -18vmax; animation: drift-a 30s ease-in-out infinite alternate; }
-.blob-b { background: radial-gradient(circle, rgba(255,158,203,0.5), transparent 62%); bottom: -30vmax; right: -18vmax; animation: drift-b 36s ease-in-out infinite alternate; }
-.blob-c { background: radial-gradient(circle, rgba(169,155,255,0.45), transparent 62%); top: 30%; left: 55%; width: 44vmax; height: 44vmax; animation: drift-a 44s ease-in-out infinite alternate-reverse; }
+.blob { position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(100px); opacity: 0.4; }
+.blob-a { background: radial-gradient(circle, rgba(255,70,110,0.6), transparent 62%); top: -30vmax; left: -18vmax; animation: drift-a 30s ease-in-out infinite alternate; }
+.blob-b { background: radial-gradient(circle, rgba(169,77,255,0.55), transparent 62%); bottom: -32vmax; right: -18vmax; animation: drift-b 36s ease-in-out infinite alternate; }
 @keyframes drift-a { from { transform: translate(0,0) scale(1); } to { transform: translate(10vmax,7vmax) scale(1.18); } }
 @keyframes drift-b { from { transform: translate(0,0) scale(1.1); } to { transform: translate(-9vmax,-6vmax) scale(0.92); } }
 .stars { position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background-image:
-    radial-gradient(1.5px 1.5px at 20% 30%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1.5px 1.5px at 70% 20%, rgba(169,155,255,0.8), transparent),
-    radial-gradient(1px 1px at 40% 70%, rgba(124,192,255,0.9), transparent),
-    radial-gradient(1.5px 1.5px at 85% 60%, rgba(255,158,203,0.8), transparent);
+    radial-gradient(1.6px 1.6px at 18% 26%, rgba(255,180,200,0.9), transparent),
+    radial-gradient(1.4px 1.4px at 72% 18%, rgba(200,150,255,0.85), transparent),
+    radial-gradient(1.2px 1.2px at 42% 66%, rgba(255,120,160,0.85), transparent),
+    radial-gradient(1.6px 1.6px at 86% 58%, rgba(255,200,120,0.8), transparent);
   animation: twinkle 6s ease-in-out infinite; }
-@keyframes twinkle { 0%,100% { opacity: 0.55; } 50% { opacity: 1; } }
+@keyframes twinkle { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
 
 .topnav { position: relative; z-index: 6; display: flex; align-items: center; justify-content: space-between;
   max-width: 1080px; margin: 0 auto; padding: 22px clamp(16px,4vw,34px) 0; }
-.brand-mini { font-family: var(--disp); font-size: 1.5rem; font-weight: 500; letter-spacing: 0.04em; color: var(--ink); display: flex; align-items: center; gap: 8px; }
-.brand-mini .star { color: var(--accent); font-size: 1.1rem; }
+.brand-mini { font-family: var(--disp); font-size: 1.35rem; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+.brand-mini .star { font-size: 1.3rem; filter: drop-shadow(0 0 10px rgba(255,70,110,0.7)); }
 .nav-links { display: flex; gap: 8px; }
-.nav-links a { font-family: var(--ui); font-size: 0.8rem; font-weight: 500; color: var(--ink-2); text-decoration: none;
+.nav-links a { font-family: var(--ui); font-size: 0.8rem; font-weight: 700; color: var(--ink-2); text-decoration: none;
   padding: 9px 18px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--card); backdrop-filter: blur(10px); transition: all 0.2s; }
-.nav-links a:hover { color: #fff; background: var(--accent); border-color: transparent; box-shadow: 0 8px 22px rgba(143,125,255,0.35); transform: translateY(-1px); }
-.nav-links a.active { color: var(--accent); border-color: var(--accent); }
+.nav-links a:hover { color: #fff; background: var(--devil); border-color: transparent; box-shadow: 0 8px 22px rgba(255,70,110,0.4); transform: translateY(-1px); }
+.nav-links a.active { color: var(--devil-2); border-color: var(--devil); }
 
-header { position: relative; z-index: 1; padding: clamp(30px,6vw,70px) 20px clamp(10px,3vw,26px); text-align: center; }
-.hero-mark { font-size: 1.5rem; color: var(--accent); filter: drop-shadow(0 0 18px rgba(143,125,255,0.6)); animation: floaty 5s ease-in-out infinite; display: inline-block; margin-bottom: 8px; }
-@keyframes floaty { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-10px) rotate(6deg); } }
-.hero-big { font-family: var(--disp); font-weight: 400; font-size: clamp(2.8rem, 12vw, 7.5rem); line-height: 0.92;
-  background: linear-gradient(115deg, var(--sky) 0%, var(--lav) 45%, var(--rose) 100%);
+header { position: relative; z-index: 1; padding: clamp(16px,3vw,34px) 20px clamp(6px,2vw,16px); text-align: center; }
+.devil-art { width: clamp(130px, 24vw, 190px); height: auto; display: block; margin: 0 auto 4px; filter: drop-shadow(0 14px 36px rgba(255,50,90,0.5)); animation: bob 4.5s ease-in-out infinite; }
+@keyframes bob { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-12px) rotate(2deg); } }
+.devil-art .tail { transform-box: fill-box; transform-origin: left center; animation: wag 3s ease-in-out infinite; }
+@keyframes wag { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(8deg); } }
+.hero-big { font-family: var(--disp); font-weight: 800; font-size: clamp(2.6rem, 11vw, 6.5rem); line-height: 0.9;
+  background: linear-gradient(115deg, var(--devil-2) 0%, var(--devil) 40%, var(--purple) 100%);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 12px 40px rgba(143,125,255,0.25)); }
-.hero-big .thin { font-style: italic; font-weight: 300; }
-.subtitle { margin-top: 14px; font-family: var(--jp); font-size: clamp(0.95rem,3vw,1.2rem); font-weight: 500; letter-spacing: 0.14em; color: var(--ink); }
+  filter: drop-shadow(0 8px 30px rgba(255,60,100,0.4)); }
+.subtitle { margin-top: 12px; font-family: var(--jp); font-size: clamp(0.9rem,3vw,1.15rem); font-weight: 700; letter-spacing: 0.1em; color: var(--ink); }
 
 main { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 14px 16px 100px; }
 
 /* 規約 */
-.terms { border: 1px solid var(--line-2); background: var(--card-2); backdrop-filter: blur(12px);
-  border-radius: 22px; padding: 24px 28px; box-shadow: 0 20px 50px -28px rgba(90,80,160,0.4); margin-top: 10px; }
-.terms h2 { font-family: var(--disp); font-size: 1.4rem; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+.terms { border: 1px solid var(--line-2); background: var(--card-2); backdrop-filter: blur(12px); border-radius: 22px; padding: 24px 28px; box-shadow: 0 20px 50px -28px rgba(255,50,90,0.35); margin-top: 10px; }
+.terms h2 { font-family: var(--disp); font-size: 1.4rem; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
 .terms .lead { font-size: 0.85rem; color: var(--ink-2); line-height: 1.9; margin-bottom: 14px; }
 .terms ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
 .terms li { font-size: 0.82rem; color: var(--ink-2); line-height: 1.7; padding-left: 26px; position: relative; }
-.terms li::before { content: "✦"; position: absolute; left: 0; top: 0; color: var(--accent); font-size: 0.8rem; }
+.terms li::before { content: "😈"; position: absolute; left: 0; top: 0; font-size: 0.8rem; }
 .terms .note { margin-top: 14px; font-size: 0.76rem; color: var(--sub); line-height: 1.8; border-top: 1px solid var(--line); padding-top: 12px; }
 
 /* フォーム */
-.form-wrap { margin-top: 22px; border: 1px solid var(--line-2); background: var(--card-2); backdrop-filter: blur(12px);
-  border-radius: 22px; padding: 22px 24px; box-shadow: 0 20px 50px -28px rgba(90,80,160,0.4); }
-.form-wrap h3 { font-family: var(--disp); font-size: 1.3rem; font-weight: 500; color: var(--ink); margin-bottom: 14px; }
+.form-wrap { margin-top: 22px; border: 1px solid var(--line-2); background: var(--card-2); backdrop-filter: blur(12px); border-radius: 22px; padding: 22px 24px; box-shadow: 0 20px 50px -28px rgba(255,50,90,0.35); }
+.form-wrap h3 { font-family: var(--disp); font-size: 1.3rem; font-weight: 700; color: var(--ink); margin-bottom: 14px; }
 .field { margin-bottom: 12px; }
 .field label { display: block; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--sub); margin-bottom: 6px; text-transform: uppercase; }
-.field input, .field textarea {
-  width: 100%; font-family: var(--ui); font-size: 0.9rem; color: var(--ink);
-  background: rgba(255,255,255,0.7); border: 1px solid var(--line-2); border-radius: 14px;
-  padding: 12px 15px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; resize: vertical;
-}
-.field input:focus, .field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(143,125,255,0.14); }
-.field textarea { min-height: 96px; line-height: 1.7; }
+.field input, .field textarea { width: 100%; font-family: var(--ui); font-size: 0.9rem; color: var(--ink);
+  background: rgba(255,255,255,0.05); border: 1px solid var(--line-2); border-radius: 14px; padding: 12px 15px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; resize: vertical; }
+.field input::placeholder, .field textarea::placeholder { color: var(--muted); }
+.field input:focus, .field textarea:focus { border-color: var(--devil); box-shadow: 0 0 0 4px rgba(255,70,110,0.14); }
+.field textarea { min-height: 92px; line-height: 1.7; }
 .form-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 4px; }
 .agree { font-size: 0.74rem; color: var(--sub); line-height: 1.6; }
-.btn-post {
-  font-family: var(--ui); font-size: 0.88rem; font-weight: 700; color: #fff; cursor: pointer;
-  border: none; border-radius: 999px; padding: 12px 30px; white-space: nowrap;
-  background: linear-gradient(135deg, var(--accent), var(--sky)); box-shadow: 0 10px 26px rgba(143,125,255,0.4); transition: transform 0.12s, box-shadow 0.2s; }
-.btn-post:hover { transform: translateY(-1px); box-shadow: 0 14px 32px rgba(143,125,255,0.55); }
+.agree strong { color: var(--devil-2); }
+.btn-post { font-family: var(--disp); font-size: 0.95rem; font-weight: 700; color: #fff; cursor: pointer; border: none; border-radius: 999px; padding: 12px 32px; white-space: nowrap;
+  background: linear-gradient(135deg, var(--devil), var(--purple)); box-shadow: 0 10px 26px rgba(255,70,110,0.45); transition: transform 0.12s, box-shadow 0.2s; }
+.btn-post:hover { transform: translateY(-1px); box-shadow: 0 14px 32px rgba(255,70,110,0.6); }
 .btn-post:active { transform: scale(0.97); }
 .btn-post:disabled { opacity: 0.5; cursor: default; transform: none; box-shadow: none; }
 .form-msg { margin-top: 10px; font-size: 0.78rem; min-height: 1.2em; }
-.form-msg.ok { color: #3aa981; }
-.form-msg.err { color: #e0679a; }
+.form-msg.ok { color: #66d6a0; }
+.form-msg.err { color: var(--devil-2); }
 
-/* コメント一覧 */
+/* 一覧（時系列・会話ログ） */
 .list-head { display: flex; align-items: baseline; justify-content: space-between; margin: 34px 4px 14px; }
-.list-head h3 { font-family: var(--disp); font-size: 1.5rem; font-weight: 500; color: var(--ink); }
-.list-head .cnt { font-size: 0.72rem; letter-spacing: 0.2em; color: var(--muted); }
-.list-head .cnt b { color: var(--accent); font-weight: 700; }
+.list-head h3 { font-family: var(--disp); font-size: 1.5rem; font-weight: 700; color: var(--ink); }
+.list-head .cnt { font-size: 0.72rem; letter-spacing: 0.16em; color: var(--muted); }
+.list-head .cnt b { color: var(--devil-2); font-weight: 700; }
 
 #comments { display: flex; flex-direction: column; gap: 12px; }
-.comment { position: relative; border: 1px solid var(--line); background: var(--card); backdrop-filter: blur(10px);
-  border-radius: 18px; padding: 16px 20px; transition: transform 0.18s, box-shadow 0.18s; }
-.comment:hover { transform: translateY(-1px); box-shadow: 0 14px 30px -20px rgba(90,80,160,0.5); }
+.comment { position: relative; border: 1px solid var(--line); background: var(--card); backdrop-filter: blur(10px); border-radius: 16px; padding: 15px 20px; transition: transform 0.18s, box-shadow 0.18s; animation: pop 0.35s ease; }
+@keyframes pop { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.comment:hover { transform: translateY(-1px); box-shadow: 0 14px 30px -20px rgba(255,50,90,0.5); }
+.comment::before { content: ""; position: absolute; left: 0; top: 14px; bottom: 14px; width: 3px; border-radius: 3px; background: linear-gradient(var(--devil), var(--purple)); opacity: 0.7; }
 .c-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
-.c-name { font-family: var(--jp); font-size: 0.92rem; font-weight: 600; color: var(--accent); }
+.c-name { font-family: var(--jp); font-size: 0.92rem; font-weight: 700; color: var(--devil-2); }
 .c-time { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.04em; }
 .c-body { font-size: 0.9rem; color: var(--ink-2); line-height: 1.85; white-space: pre-wrap; word-break: break-word; }
-.c-del { position: absolute; top: 12px; right: 14px; display: none; cursor: pointer; border: 1px solid var(--line-2);
-  background: rgba(255,255,255,0.6); color: var(--rose); font-size: 0.68rem; border-radius: 999px; padding: 4px 12px; transition: all 0.15s; }
-.c-del:hover { background: var(--rose); color: #fff; border-color: transparent; }
+.c-del { position: absolute; top: 12px; right: 14px; display: none; cursor: pointer; border: 1px solid var(--line-2); background: rgba(255,255,255,0.05); color: var(--devil-2); font-size: 0.68rem; border-radius: 999px; padding: 4px 12px; transition: all 0.15s; }
+.c-del:hover { background: var(--devil); color: #fff; border-color: transparent; }
 body.admin .c-del { display: inline-block; }
 
-.state { text-align: center; color: var(--muted); padding: 50px 0; font-family: var(--jp); font-size: 0.9rem; letter-spacing: 0.14em; }
+.state { text-align: center; color: var(--muted); padding: 46px 0; font-family: var(--jp); font-size: 0.9rem; letter-spacing: 0.12em; }
 .state.hidden { display: none; }
 
 .admin-bar { text-align: center; margin-top: 30px; }
 .admin-toggle { font-size: 0.72rem; color: var(--muted); background: none; border: none; cursor: pointer; letter-spacing: 0.12em; }
-.admin-toggle:hover { color: var(--accent); }
-body.admin .admin-toggle { color: var(--accent); }
-
-.copyright { text-align: center; margin-top: 26px; font-family: var(--disp); font-size: 0.95rem; letter-spacing: 0.1em; color: var(--sub); }
-.copyright .s { color: var(--accent); }
+.admin-toggle:hover { color: var(--devil-2); }
+body.admin .admin-toggle { color: var(--devil-2); }
+.copyright { text-align: center; margin-top: 24px; font-family: var(--disp); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.06em; color: var(--sub); }
 
 @media (max-width: 560px) {
   .form-foot { flex-direction: column; align-items: stretch; }
@@ -147,15 +136,11 @@ body.admin .admin-toggle { color: var(--accent); }
 </head>
 <body>
 
-<div class="atmosphere">
-  <div class="blob blob-a"></div>
-  <div class="blob blob-b"></div>
-  <div class="blob blob-c"></div>
-</div>
+<div class="atmosphere"><div class="blob blob-a"></div><div class="blob blob-b"></div></div>
 <div class="stars"></div>
 
 <nav class="topnav">
-  <div class="brand-mini"><span class="star">✦</span> Take's Sound</div>
+  <div class="brand-mini"><span class="star">😈</span> Take's Sound</div>
   <div class="nav-links">
     <a href="index.html">Music</a>
     <a href="comments.html" class="active">Comments</a>
@@ -163,16 +148,40 @@ body.admin .admin-toggle { color: var(--accent); }
 </nav>
 
 <header>
-  <span class="hero-mark">✦</span>
+  <svg class="devil-art" viewBox="0 0 240 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="かわいい悪魔">
+    <defs>
+      <radialGradient id="body" cx="40%" cy="32%" r="78%"><stop offset="0%" stop-color="#ff8ba9"/><stop offset="52%" stop-color="#ff4d76"/><stop offset="100%" stop-color="#df2f5c"/></radialGradient>
+      <linearGradient id="horn" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff1d9"/><stop offset="100%" stop-color="#ffcf9b"/></linearGradient>
+      <radialGradient id="cheek" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ff9fbb"/><stop offset="100%" stop-color="#ff9fbb" stop-opacity="0"/></radialGradient>
+      <filter id="soft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
+    </defs>
+    <ellipse cx="120" cy="132" rx="96" ry="102" fill="#ff2d68" opacity="0.16" filter="url(#soft)"/>
+    <g class="tail">
+      <path d="M150 200 C 206 202 214 150 184 136 C 208 156 182 186 150 176 Z" fill="url(#body)"/>
+      <path d="M188 120 c 10 -6 22 -2 22 10 c 0 8 -8 12 -14 10 c 2 8 -6 14 -14 10 c -8 -4 -6 -14 0 -18 c -4 -8 6 -16 14 -12 z" fill="#df2f5c"/>
+    </g>
+    <path d="M72 152 C 30 118 16 150 30 172 C 40 152 58 154 70 168 Z" fill="#a94dff" opacity="0.9"/>
+    <path d="M168 152 C 210 118 224 150 210 172 C 200 152 182 154 170 168 Z" fill="#a94dff" opacity="0.9"/>
+    <path d="M84 168 C 84 214 98 236 120 236 C 142 236 156 214 156 168 Z" fill="url(#body)"/>
+    <circle cx="80" cy="192" r="13" fill="url(#body)"/><circle cx="160" cy="192" r="13" fill="url(#body)"/>
+    <path d="M92 68 C 80 42 84 24 72 12 C 98 20 106 46 108 64 Z" fill="url(#horn)" stroke="#e8b98a" stroke-width="1.4"/>
+    <path d="M148 68 C 160 42 156 24 168 12 C 142 20 134 46 132 64 Z" fill="url(#horn)" stroke="#e8b98a" stroke-width="1.4"/>
+    <circle cx="120" cy="100" r="60" fill="url(#body)"/>
+    <ellipse cx="90" cy="120" rx="15" ry="9" fill="url(#cheek)"/><ellipse cx="150" cy="120" rx="15" ry="9" fill="url(#cheek)"/>
+    <ellipse cx="99" cy="98" rx="12.5" ry="15.5" fill="#3a0d1f"/><ellipse cx="141" cy="98" rx="12.5" ry="15.5" fill="#3a0d1f"/>
+    <circle cx="103" cy="92" r="4.4" fill="#fff"/><circle cx="145" cy="92" r="4.4" fill="#fff"/>
+    <circle cx="95" cy="103" r="2.2" fill="#fff" opacity="0.85"/><circle cx="137" cy="103" r="2.2" fill="#fff" opacity="0.85"/>
+    <path d="M106 121 Q 120 135 134 121" fill="none" stroke="#3a0d1f" stroke-width="3.6" stroke-linecap="round"/>
+    <path d="M115 125 l4 8 4 -8 z" fill="#fff"/>
+  </svg>
   <div class="hero-big">Comments</div>
-  <p class="subtitle">感想・メッセージ、自由にどうぞ</p>
+  <p class="subtitle">感想・メッセージ、自由にどうぞ 😈</p>
 </header>
 
 <main>
-  <!-- ============ 利用規約 ============ -->
   <section class="terms">
     <h2>ご利用にあたって</h2>
-    <p class="lead">どなたでも自由に書き込めます。名前は空欄でもOK（「名無し」で表示されます）。書き込む前に、下のルールをご確認ください。書き込んだ時点で、この内容に同意したものとみなします。</p>
+    <p class="lead">どなたでも自由に書き込めます。名前は空欄でもOK（「名無し」で表示されます）。書き込みは<strong>時系列（古い順）</strong>に並び、みんなで会話するように楽しめます。書き込む前に、下のルールをご確認ください。書き込んだ時点で、この内容に同意したものとみなします。</p>
     <ul>
       <li>誹謗中傷・差別・脅迫など、人を傷つける内容は禁止です。</li>
       <li>個人情報（本名・住所・電話番号・メールなど）の書き込みはやめてください。自分のものでも控えてください。</li>
@@ -183,7 +192,6 @@ body.admin .admin-toggle { color: var(--accent); }
     <p class="note">上記に反するコメントや、管理人が不適切と判断したコメントは、予告なく削除します。あらかじめご了承ください。ここに書かれた内容は誰でも読める公開の場です。個人が特定される情報は書かないようご注意ください。</p>
   </section>
 
-  <!-- ============ 投稿フォーム ============ -->
   <section class="form-wrap">
     <h3>コメントを書く</h3>
     <div class="field">
@@ -192,7 +200,7 @@ body.admin .admin-toggle { color: var(--accent); }
     </div>
     <div class="field">
       <label for="cBody">コメント</label>
-      <textarea id="cBody" maxlength="1000" placeholder="曲の感想など、お気軽にどうぞ…"></textarea>
+      <textarea id="cBody" maxlength="500" placeholder="曲の感想や、みんなへのひとことをどうぞ…"></textarea>
     </div>
     <div class="form-foot">
       <span class="agree">送信すると<strong>利用規約に同意</strong>したものとみなされます。</span>
@@ -201,27 +209,37 @@ body.admin .admin-toggle { color: var(--accent); }
     <div class="form-msg" id="formMsg"></div>
   </section>
 
-  <!-- ============ 一覧 ============ -->
   <div class="list-head">
-    <h3>Messages</h3>
+    <h3>Talk</h3>
     <span class="cnt" id="cCount"></span>
   </div>
   <div id="comments"></div>
   <p class="state" id="loading">読み込み中…</p>
-  <p class="state hidden" id="noComments">まだコメントはありません。最初のひとことをどうぞ ✦</p>
+  <p class="state hidden" id="noComments">まだコメントはありません。最初のひとことをどうぞ 😈</p>
   <p class="state hidden" id="loadErr">コメントを読み込めませんでした。時間をおいて再度お試しください。</p>
 
-  <div class="admin-bar">
-    <button class="admin-toggle" id="adminToggle">管理人</button>
-  </div>
-  <p class="copyright"><span class="s">✦</span> © 2026 旅行配信者たけさん <span class="s">✦</span></p>
+  <div class="admin-bar"><button class="admin-toggle" id="adminToggle">管理人</button></div>
+  <p class="copyright">😈 © 2026 旅行配信者たけさん 😈</p>
 </main>
 
 <script>
 "use strict";
 
+/* ================================================================
+   コメントは既存の increment_download RPC を利用して保存します。
+   （downloads テーブルに cmt::/del:: プレフィクスの行として同居）
+   → 追加の DB セットアップは不要で、そのまま動作します。
+================================================================ */
 const SUPABASE_URL = "https://mbviclfaijldherrtmyk.supabase.co";
 const SUPABASE_KEY = "sb_publishable_EK-rH_HBQIJKmnhNgEa6Iw_7_k4cdqu";
+
+/* ★ 管理人用パスワード（削除ボタンを出すため）。お好きな文字列に変更してください。 */
+const ADMIN_PASS = "take-devil-2026";
+
+const CMT_PREFIX = "cmt::";
+const DEL_PREFIX = "del::";
+const MAX_BODY = 500;
+const MAX_NAME = 40;
 
 const sbHeaders = {
   "apikey": SUPABASE_KEY,
@@ -232,11 +250,32 @@ const sbHeaders = {
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
-function fmtDate(iso) {
-  const d = new Date(iso);
+/* base64url <-> UTF-8 JSON */
+function b64encode(obj) {
+  const bytes = new TextEncoder().encode(JSON.stringify(obj));
+  let bin = ""; bytes.forEach(b => bin += String.fromCharCode(b));
+  return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+function b64decode(s) {
+  s = s.replace(/-/g, "+").replace(/_/g, "/");
+  const bin = atob(s);
+  const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+  return JSON.parse(new TextDecoder().decode(bytes));
+}
+
+function fmtDate(ms) {
+  const d = new Date(ms);
   if (isNaN(d)) return "";
   const p = n => String(n).padStart(2, "0");
   return d.getFullYear() + "/" + p(d.getMonth()+1) + "/" + p(d.getDate()) + " " + p(d.getHours()) + ":" + p(d.getMinutes());
+}
+
+async function rpcIncrement(key) {
+  const res = await fetch(SUPABASE_URL + "/rest/v1/rpc/increment_download", {
+    method: "POST", headers: sbHeaders, body: JSON.stringify({ song_title: key })
+  });
+  if (!res.ok) throw new Error("http " + res.status);
+  return res.json();
 }
 
 /* ================= 読み込み ================= */
@@ -245,59 +284,77 @@ async function loadComments() {
   $("loadErr").classList.add("hidden");
   $("noComments").classList.add("hidden");
   try {
-    const res = await fetch(SUPABASE_URL + "/rest/v1/comments?select=id,name,body,created_at&order=created_at.desc", { headers: sbHeaders });
+    const url = SUPABASE_URL + "/rest/v1/downloads?select=title&or=(title.like." + CMT_PREFIX + "*,title.like." + DEL_PREFIX + "*)";
+    const res = await fetch(url, { headers: sbHeaders });
     if (!res.ok) throw new Error("http " + res.status);
     const rows = await res.json();
+
+    const deleted = new Set();
+    const items = [];
+    (Array.isArray(rows) ? rows : []).forEach(r => {
+      const t = r.title;
+      if (typeof t !== "string") return;
+      if (t.startsWith(DEL_PREFIX)) { deleted.add(t.slice(DEL_PREFIX.length)); return; }
+      if (t.startsWith(CMT_PREFIX)) {
+        const rest = t.slice(CMT_PREFIX.length);
+        const sep = rest.indexOf("::");
+        if (sep < 0) return;
+        const uid = rest.slice(0, sep);
+        const payload = rest.slice(sep + 2);
+        let data; try { data = b64decode(payload); } catch (_) { return; }
+        const ms = parseInt(uid.split("-")[0], 10);
+        items.push({ uid, ms, name: data.n, body: data.b });
+      }
+    });
+
+    const visible = items.filter(c => !deleted.has(c.uid)).sort((a, b) => a.ms - b.ms); // 時系列（古い順）
     $("loading").classList.add("hidden");
-    renderComments(Array.isArray(rows) ? rows : []);
+    renderComments(visible);
   } catch (e) {
     $("loading").classList.add("hidden");
     $("loadErr").classList.remove("hidden");
   }
 }
 
-function renderComments(rows) {
+function renderComments(list) {
   const wrap = $("comments");
   wrap.innerHTML = "";
-  $("cCount").innerHTML = "<b>" + rows.length + "</b> 件";
-  $("noComments").classList.toggle("hidden", rows.length !== 0);
+  $("cCount").innerHTML = "<b>" + list.length + "</b> 件";
+  $("noComments").classList.toggle("hidden", list.length !== 0);
 
-  rows.forEach(r => {
+  list.forEach(c => {
     const el = document.createElement("div");
     el.className = "comment";
     el.innerHTML =
-      '<button class="c-del" data-id="' + r.id + '" title="削除">削除</button>' +
+      '<button class="c-del" title="削除">削除</button>' +
       '<div class="c-head">' +
-        '<span class="c-name">' + esc(r.name || "名無し") + '</span>' +
-        '<span class="c-time">' + fmtDate(r.created_at) + '</span>' +
+        '<span class="c-name">' + esc(c.name || "名無し") + '</span>' +
+        '<span class="c-time">' + fmtDate(c.ms) + '</span>' +
       '</div>' +
-      '<div class="c-body">' + esc(r.body) + '</div>';
-    el.querySelector(".c-del").addEventListener("click", () => deleteComment(r.id));
+      '<div class="c-body">' + esc(c.body) + '</div>';
+    el.querySelector(".c-del").addEventListener("click", () => deleteComment(c.uid));
     wrap.appendChild(el);
   });
 }
 
 /* ================= 投稿 ================= */
 async function postComment() {
-  const name = $("cName").value.trim();
-  const body = $("cBody").value.trim();
+  const name = $("cName").value.trim().slice(0, MAX_NAME);
+  const body = $("cBody").value.trim().slice(0, MAX_BODY);
   const msg = $("formMsg");
-  msg.className = "form-msg";
-  msg.textContent = "";
+  msg.className = "form-msg"; msg.textContent = "";
 
   if (!body) { msg.className = "form-msg err"; msg.textContent = "コメントを入力してください。"; return; }
 
+  const uid = Date.now() + "-" + Math.random().toString(36).slice(2, 8);
+  const key = CMT_PREFIX + uid + "::" + b64encode({ n: name, b: body });
+
   $("btnPost").disabled = true;
   try {
-    const res = await fetch(SUPABASE_URL + "/rest/v1/rpc/post_comment", {
-      method: "POST", headers: sbHeaders,
-      body: JSON.stringify({ p_name: name, p_body: body })
-    });
-    if (!res.ok) throw new Error("http " + res.status);
+    await rpcIncrement(key);
     msg.className = "form-msg ok";
-    msg.textContent = "投稿しました。ありがとうございます ✦";
-    $("cName").value = "";
-    $("cBody").value = "";
+    msg.textContent = "投稿しました。ありがとうございます 😈";
+    $("cName").value = ""; $("cBody").value = "";
     await loadComments();
   } catch (e) {
     msg.className = "form-msg err";
@@ -307,32 +364,13 @@ async function postComment() {
   }
 }
 
-/* ================= 削除（管理人）================= */
-function getAdminPass() {
-  let p = sessionStorage.getItem("admin_pass");
-  if (!p) {
-    p = prompt("管理用パスワードを入力してください");
-    if (p) sessionStorage.setItem("admin_pass", p);
-  }
-  return p;
-}
-
-async function deleteComment(id) {
-  const pass = getAdminPass();
-  if (!pass) return;
+/* ================= 削除（管理人：ソフト削除）================= */
+async function deleteComment(uid) {
+  if (!document.body.classList.contains("admin")) return;
   if (!confirm("このコメントを削除しますか？")) return;
   try {
-    const res = await fetch(SUPABASE_URL + "/rest/v1/rpc/delete_comment", {
-      method: "POST", headers: sbHeaders,
-      body: JSON.stringify({ p_id: id, p_pass: pass })
-    });
-    const ok = await res.json();
-    if (ok === true) {
-      await loadComments();
-    } else {
-      sessionStorage.removeItem("admin_pass");
-      alert("パスワードが違います。");
-    }
+    await rpcIncrement(DEL_PREFIX + uid);   // 非表示マーカーを立てる
+    await loadComments();
   } catch (e) {
     alert("削除に失敗しました。");
   }
@@ -342,17 +380,18 @@ async function deleteComment(id) {
 $("adminToggle").addEventListener("click", () => {
   if (document.body.classList.contains("admin")) {
     document.body.classList.remove("admin");
-    sessionStorage.removeItem("admin_pass");
     sessionStorage.removeItem("admin_mode");
   } else {
-    const p = getAdminPass();
-    if (p) { document.body.classList.add("admin"); sessionStorage.setItem("admin_mode", "1"); }
+    const p = prompt("管理用パスワードを入力してください");
+    if (p === ADMIN_PASS) { document.body.classList.add("admin"); sessionStorage.setItem("admin_mode", "1"); }
+    else if (p !== null) { alert("パスワードが違います。"); }
   }
 });
 if (sessionStorage.getItem("admin_mode") === "1") document.body.classList.add("admin");
 
 /* ================= INIT ================= */
 $("btnPost").addEventListener("click", postComment);
+$("cBody").addEventListener("keydown", e => { if ((e.metaKey || e.ctrlKey) && e.key === "Enter") postComment(); });
 loadComments();
 </script>
 
