@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- サイトタイトルはここを変える -->
+  <title>MUSIC</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #080810;
+      --surface:   #11111e;
+      --border:    #1e1e30;
+      --accent:    #7c6fff;
+      --accent-dim:#3d3880;
+      --text:      #d8d8e8;
+      --muted:     #55556a;
+      --playing:   #a39aff;
+    }
+
+    body {
+      font-family: -apple-system, 'Helvetica Neue', 'Hiragino Sans', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── ヘッダー ── */
+    header {
+      padding: 56px 20px 40px;
+      text-align: center;
+    }
+
+    .site-title {
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: #fff;
+    }
+
+    .site-subtitle {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+
+    /* ── メイン ── */
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 16px 100px;
+    }
+
+    /* ── 検索 ── */
+    .search-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 14px 0;
+      background: var(--bg);
+    }
+
+    #searchBox {
+      width: 100%;
+      padding: 11px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    #searchBox::placeholder { color: var(--muted); }
+    #searchBox:focus { border-color: var(--accent); }
+
+    /* ── リスト ── */
+    #songList { list-style: none; }
+
+    .song-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .song-item:first-child { border-top: 1px solid var(--border); }
+
+    /* 行 */
+    .song-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 8px;
+      user-select: none;
+    }
+
+    .song-num {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      min-width: 22px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .song-title {
+      flex: 1;
+      font-size: 0.95rem;
+      color: var(--text);
+      transition: color 0.15s;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .song-item.playing .song-num   { color: var(--playing); }
+    .song-item.playing .song-title { color: var(--playing); }
+
+    /* 再生ボタン */
+    .btn-play {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid #2e2e44;
+      background: transparent;
+      color: #666;
+      font-size: 0.7rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .btn-play:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .song-item.playing .btn-play {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* DLボタン */
+    .btn-dl {
+      flex-shrink: 0;
+      color: var(--muted);
+      font-size: 1.1rem;
+      text-decoration: none;
+      padding: 4px 6px;
+      line-height: 1;
+      transition: color 0.15s;
+      display: flex;
+      align-items: center;
+    }
+    .btn-dl:hover { color: var(--accent); }
+
+    /* ── オーディオエリア ── */
+    .audio-wrap {
+      display: none;
+      padding: 0 8px 14px 44px;
+    }
+    .audio-wrap.open { display: block; }
+
+    .audio-wrap audio {
+      width: 100%;
+      height: 34px;
+      border-radius: 4px;
+      accent-color: var(--accent);
+    }
+
+    /* ── 検索結果なし ── */
+    .empty {
+      text-align: center;
+      color: var(--muted);
+      padding: 80px 0;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .empty.show { display: block; }
+
+    /* ── フッター ── */
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      color: #333;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <!-- ↓ ここを好きなタイトルに変えてください -->
+  <h1 class="site-title">MUSIC</h1>
+  <p class="site-subtitle" id="subtitle">— — —</p>
+</header>
+
+<main>
+  <div class="search-wrap">
+    <input type="text" id="searchBox" placeholder="曲名で検索...">
+  </div>
+  <ul id="songList"></ul>
+  <p class="empty" id="empty">曲が見つかりません</p>
+</main>
+
+<footer>
+  <!-- ↓ 名前を変えてください -->
+  &copy; 2025 Your Name
+</footer>
+
+<script>
+/* ============================================================
+   曲リスト（タイトルとファイル名が一致している前提）
+   ============================================================ */
+const SONGS = [
+  "アフターグロウ",
+  "偽花",
+  "パラレル",
+  "ミッドナイト・スイッチ",
+  "反転灯",
+  "猶予",
+  "再起動",
+  "仮保存",
+  "今日を置いていかない",
+  "履歴を消さない",
+  "下関",
+  "タイトル 起こさないままで",
+  "エンジンを切れない",
+  "タイトル 半分だけあけた窓",
+  "出口",
+  "君のせいだ",
+  "琥珀",
+  "終電のあとの地図",
+  "まぶしい誤差",
+  "影の拍",
+  "バグ体温",
+  "まだ乾かない",
+  "LUCID NOIR",
+  "REVERSE SUN",
+  "HALATION",
+  "NIGHT AUCTION",
+  "PHASE LINE",
+  "PAPER MOON",
+  "BLACK BADGE",
+  "NO SIGNAL",
+  "うしろみち",
+  "影あずかり",
+  "SUN BLEACH",
+  "LAST COIN",
+  "SPIN",
+  "ゆうれい市場",
+  "港のよいち",
+  "SHIFT",
+  "画面の向こうで",
+  "朝一番の便",
+  "母へ",
+  "薄明",
+  "残響ミラー",
+  "朝を盗め",
+  "夜駆けのネイル",
+  "走る地図を開く前",
+  "助手席の灯り",
+  "夜明けのルート OP",
+  "夜明けのルート ED",
+];
+
+/* ============================================================
+   状態
+   ============================================================ */
+let activeAudio = null;
+let activeItem  = null;
+
+/* ============================================================
+   描画
+   ============================================================ */
+function render(list) {
+  const ul    = document.getElementById("songList");
+  const empty = document.getElementById("empty");
+  ul.innerHTML = "";
+
+  if (list.length === 0) {
+    empty.classList.add("show");
+    return;
+  }
+  empty.classList.remove("show");
+
+  list.forEach(title => {
+    const num  = String(SONGS.indexOf(title) + 1).padStart(2, "0");
+    const path = "music/" + encodeURIComponent(title) + ".mp3";
+
+    const li = document.createElement("li");
+    li.className = "song-item";
+    li.dataset.title = title;
+    li.innerHTML = `
+      <div class="song-row">
+        <span class="song-num">${num}</span>
+        <span class="song-title">${esc(title)}</span>
+        <button class="btn-play" aria-label="再生">&#9654;</button>
+        <a class="btn-dl" href="${path}" download="${esc(title)}.mp3" aria-label="ダウンロード">&#8659;</a>
+      </div>
+      <div class="audio-wrap">
+        <audio preload="none" src="${path}"></audio>
+      </div>
+    `;
+
+    li.querySelector(".btn-play").addEventListener("click", () => togglePlay(li));
+    ul.appendChild(li);
+  });
+}
+
+/* ============================================================
+   再生トグル
+   ============================================================ */
+function togglePlay(item) {
+  const wrap  = item.querySelector(".audio-wrap");
+  const audio = wrap.querySelector("audio");
+  const btn   = item.querySelector(".btn-play");
+
+  // 再生中の別トラックを停止
+  if (activeAudio && activeAudio !== audio) {
+    stopItem(activeItem);
+  }
+
+  if (item.classList.contains("playing")) {
+    stopItem(item);
+  } else {
+    wrap.classList.add("open");
+    item.classList.add("playing");
+    btn.innerHTML = "&#9646;&#9646;"; // ■■ 一時停止アイコン
+    audio.play().catch(() => {});
+    activeAudio = audio;
+    activeItem  = item;
+
+    audio.onended = () => stopItem(item);
+  }
+}
+
+function stopItem(item) {
+  if (!item) return;
+  const audio = item.querySelector("audio");
+  const wrap  = item.querySelector(".audio-wrap");
+  const btn   = item.querySelector(".btn-play");
+  audio.pause();
+  audio.currentTime = 0;
+  item.classList.remove("playing");
+  wrap.classList.remove("open");
+  btn.innerHTML = "&#9654;";
+  activeAudio = null;
+  activeItem  = null;
+}
+
+/* ============================================================
+   検索
+   ============================================================ */
+document.getElementById("searchBox").addEventListener("input", function () {
+  const q = this.value.trim().toLowerCase();
+  render(q ? SONGS.filter(s => s.toLowerCase().includes(q)) : SONGS);
+});
+
+/* ============================================================
+   XSS対策
+   ============================================================ */
+function esc(s) {
+  return s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+/* ============================================================
+   初期化
+   ============================================================ */
+document.getElementById("subtitle").textContent = `${SONGS.length} tracks`;
+render(SONGS);
+</script>
+
+</body>
+</html>
