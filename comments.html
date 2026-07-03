@@ -132,12 +132,85 @@ body.admin .admin-toggle { color: var(--devil-2); }
   .btn-post { width: 100%; }
   .nav-links a { padding: 8px 14px; font-size: 0.74rem; }
 }
+
+/* ===== CHARACTERS & FX ===== */
+.char-layer { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; will-change: transform; }
+.mini { position: absolute; height: auto; filter: drop-shadow(0 8px 18px rgba(255,50,90,0.35)); }
+.mini.tint-purple { filter: drop-shadow(0 8px 18px rgba(160,80,255,0.4)) hue-rotate(-32deg) saturate(1.1); }
+.mini.tint-gold   { filter: drop-shadow(0 8px 18px rgba(255,190,80,0.4)) hue-rotate(28deg) saturate(1.2); }
+.anim-float { animation: floatY ease-in-out infinite; }
+.anim-sway  { animation: sway ease-in-out infinite; }
+.anim-cross { animation: crossFly linear infinite; }
+.anim-spin  { animation: spinDrift linear infinite; }
+@keyframes floatY { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)); } 50% { transform: translateY(-26px) rotate(var(--r,0deg)); } }
+@keyframes sway { 0%,100% { transform: translate(0,0) rotate(-9deg); } 50% { transform: translate(16px,-20px) rotate(9deg); } }
+@keyframes crossFly { from { transform: translateX(-14vw) rotate(-6deg); } to { transform: translateX(118vw) rotate(6deg); } }
+@keyframes spinDrift { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+.fx { position: fixed; z-index: 9997; pointer-events: none; user-select: none; will-change: transform, opacity; line-height: 1; }
+.fx.trail { animation: fxRise 0.9s ease-out forwards; }
+.fx.burst { animation: fxBurst 0.8s ease-out forwards; }
+@keyframes fxRise { 0% { opacity: 0.95; transform: translate(-50%,-50%) scale(0.5) rotate(0); } 100% { opacity: 0; transform: translate(-50%,-170%) scale(1.05) rotate(var(--rot,20deg)); } }
+@keyframes fxBurst { 0% { opacity: 1; transform: translate(-50%,-50%) scale(0.4); } 100% { opacity: 0; transform: translate(calc(-50% + var(--dx,0px)), calc(-50% + var(--dy,0px))) scale(1.05); } }
+@media (prefers-reduced-motion: reduce) { .mini, .devil-art, .anim-float, .anim-sway, .anim-cross, .anim-spin { animation: none !important; } }
 </style>
 </head>
 <body>
 
 <div class="atmosphere"><div class="blob blob-a"></div><div class="blob blob-b"></div></div>
 <div class="stars"></div>
+
+<!-- ============ 悪魔キャラのシンボル定義 ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="mb" cx="40%" cy="32%" r="78%"><stop offset="0%" stop-color="#ff8ba9"/><stop offset="52%" stop-color="#ff4d76"/><stop offset="100%" stop-color="#df2f5c"/></radialGradient>
+    <linearGradient id="mh" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff1d9"/><stop offset="100%" stop-color="#ffcf9b"/></linearGradient>
+    <radialGradient id="mc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ff9fbb"/><stop offset="100%" stop-color="#ff9fbb" stop-opacity="0"/></radialGradient>
+    <symbol id="dv-body" viewBox="0 0 240 250">
+      <path d="M150 200 C 206 202 214 150 184 136 C 208 156 182 186 150 176 Z" fill="url(#mb)"/>
+      <path d="M188 120 c 10 -6 22 -2 22 10 c 0 8 -8 12 -14 10 c 2 8 -6 14 -14 10 c -8 -4 -6 -14 0 -18 c -4 -8 6 -16 14 -12 z" fill="#df2f5c"/>
+      <path d="M72 152 C 30 118 16 150 30 172 C 40 152 58 154 70 168 Z" fill="#a94dff" opacity="0.9"/>
+      <path d="M168 152 C 210 118 224 150 210 172 C 200 152 182 154 170 168 Z" fill="#a94dff" opacity="0.9"/>
+      <path d="M84 168 C 84 214 98 236 120 236 C 142 236 156 214 156 168 Z" fill="url(#mb)"/>
+      <circle cx="80" cy="192" r="13" fill="url(#mb)"/><circle cx="160" cy="192" r="13" fill="url(#mb)"/>
+      <path d="M92 68 C 80 42 84 24 72 12 C 98 20 106 46 108 64 Z" fill="url(#mh)" stroke="#e8b98a" stroke-width="1.4"/>
+      <path d="M148 68 C 160 42 156 24 168 12 C 142 20 134 46 132 64 Z" fill="url(#mh)" stroke="#e8b98a" stroke-width="1.4"/>
+      <circle cx="120" cy="100" r="60" fill="url(#mb)"/>
+      <ellipse cx="90" cy="120" rx="15" ry="9" fill="url(#mc)"/><ellipse cx="150" cy="120" rx="15" ry="9" fill="url(#mc)"/>
+    </symbol>
+    <symbol id="dv-a" viewBox="0 0 240 250">
+      <use href="#dv-body"/>
+      <ellipse cx="99" cy="98" rx="12.5" ry="15.5" fill="#3a0d1f"/><ellipse cx="141" cy="98" rx="12.5" ry="15.5" fill="#3a0d1f"/>
+      <circle cx="103" cy="92" r="4.4" fill="#fff"/><circle cx="145" cy="92" r="4.4" fill="#fff"/>
+      <path d="M106 121 Q 120 135 134 121" fill="none" stroke="#3a0d1f" stroke-width="3.6" stroke-linecap="round"/>
+      <path d="M115 125 l4 8 4 -8 z" fill="#fff"/>
+    </symbol>
+    <symbol id="dv-b" viewBox="0 0 240 250">
+      <use href="#dv-body"/>
+      <path d="M88 102 q 11 -13 22 0" fill="none" stroke="#3a0d1f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M130 102 q 11 -13 22 0" fill="none" stroke="#3a0d1f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M112 120 q 8 10 16 0" fill="none" stroke="#3a0d1f" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M150 64 c 3 -5 11 -3 11 3 c 0 5 -8 9 -11 12 c -3 -3 -11 -7 -11 -12 c 0 -6 8 -8 11 -3 z" fill="#ff466e"/>
+    </symbol>
+    <symbol id="dv-c" viewBox="0 0 240 250">
+      <use href="#dv-body"/>
+      <path d="M88 98 q 11 9 22 0" fill="none" stroke="#3a0d1f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M130 98 q 11 9 22 0" fill="none" stroke="#3a0d1f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M112 122 q 8 6 16 0" fill="none" stroke="#3a0d1f" stroke-width="3" stroke-linecap="round"/>
+      <text x="150" y="60" font-family="sans-serif" font-size="26" fill="#ffc94d" font-weight="700">z</text>
+      <text x="170" y="42" font-family="sans-serif" font-size="17" fill="#ffc94d" font-weight="700">z</text>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="char-layer" id="charLayer">
+  <svg class="mini anim-float" style="left:4%;top:16%;width:70px;--r:-6deg;opacity:.5;animation-duration:7s;animation-delay:-1s"><use href="#dv-a"/></svg>
+  <svg class="mini anim-sway tint-purple" style="right:5%;top:22%;width:60px;opacity:.48;animation-duration:9s;animation-delay:-3s"><use href="#dv-b"/></svg>
+  <svg class="mini anim-float tint-gold" style="left:8%;top:54%;width:48px;--r:8deg;opacity:.4;animation-duration:6.5s;animation-delay:-2s"><use href="#dv-c"/></svg>
+  <svg class="mini anim-sway" style="right:7%;top:60%;width:74px;opacity:.44;animation-duration:10s"><use href="#dv-a"/></svg>
+  <svg class="mini anim-float tint-purple" style="left:3%;bottom:14%;width:56px;--r:4deg;opacity:.42;animation-duration:8s;animation-delay:-4s"><use href="#dv-b"/></svg>
+  <svg class="mini anim-cross" style="top:9%;width:44px;opacity:.38;animation-duration:52s"><use href="#dv-c"/></svg>
+  <svg class="mini anim-cross tint-gold" style="top:78%;width:38px;opacity:.34;animation-duration:66s;animation-delay:-30s"><use href="#dv-a"/></svg>
+</div>
 
 <nav class="topnav">
   <div class="brand-mini"><span class="star">😈</span> Take's Sound</div>
@@ -393,6 +466,41 @@ if (sessionStorage.getItem("admin_mode") === "1") document.body.classList.add("a
 $("btnPost").addEventListener("click", postComment);
 $("cBody").addEventListener("keydown", e => { if ((e.metaKey || e.ctrlKey) && e.key === "Enter") postComment(); });
 loadComments();
+
+/* ================================================================
+   FX — マウスのきらめき / クリックのバースト / パララックス
+================================================================ */
+(function () {
+  const fine = window.matchMedia && window.matchMedia("(pointer: fine)").matches;
+  const layer = document.getElementById("charLayer");
+  const TRAIL = ["✦","💗","💜","😈","⭐"];
+  const BURST = ["😈","💗","💜","✦","🔥","⭐"];
+  function make(cls, x, y, txt, sz) {
+    const s = document.createElement("span");
+    s.className = "fx " + cls; s.textContent = txt;
+    s.style.left = x + "px"; s.style.top = y + "px"; s.style.fontSize = sz + "px";
+    document.body.appendChild(s);
+    s.addEventListener("animationend", () => s.remove());
+    return s;
+  }
+  let last = 0;
+  if (fine) document.addEventListener("mousemove", e => {
+    const n = performance.now(); if (n - last < 55) return; last = n;
+    const s = make("trail", e.clientX, e.clientY, TRAIL[Math.random() * TRAIL.length | 0], 12 + Math.random() * 10);
+    s.style.setProperty("--rot", (Math.random() * 60 - 30) + "deg");
+  });
+  document.addEventListener("click", e => {
+    if (e.target.closest("input, textarea, select")) return;
+    const n = 8 + (Math.random() * 4 | 0);
+    for (let i = 0; i < n; i++) {
+      const a = Math.random() * Math.PI * 2, d = 28 + Math.random() * 52;
+      const s = make("burst", e.clientX, e.clientY, BURST[Math.random() * BURST.length | 0], 14 + Math.random() * 12);
+      s.style.setProperty("--dx", Math.cos(a) * d + "px");
+      s.style.setProperty("--dy", Math.sin(a) * d + "px");
+    }
+  });
+  if (layer) window.addEventListener("scroll", () => { layer.style.transform = "translateY(" + (window.scrollY * 0.12) + "px)"; }, { passive: true });
+})();
 </script>
 
 </body>
