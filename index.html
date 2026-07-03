@@ -142,19 +142,35 @@
       color: #fff;
     }
 
-    /* DLボタン */
-    .btn-dl {
+    /* DLボタン＋カウント */
+    .dl-wrap {
       flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+    .btn-dl {
       color: var(--muted);
       font-size: 1.1rem;
       text-decoration: none;
-      padding: 4px 6px;
+      padding: 2px 6px;
       line-height: 1;
       transition: color 0.15s;
       display: flex;
       align-items: center;
     }
     .btn-dl:hover { color: var(--accent); }
+    .dl-count {
+      font-size: 0.65rem;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      min-width: 24px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .dl-count.visible { opacity: 1; }
 
     /* ── オーディオエリア ── */
     .audio-wrap {
@@ -299,7 +315,10 @@ function render(list) {
         <span class="song-num">${num}</span>
         <span class="song-title">${esc(title)}</span>
         <button class="btn-play" aria-label="再生">&#9654;</button>
-        <a class="btn-dl" href="${path}" download="${esc(title)}.mp3" aria-label="ダウンロード">&#8659;</a>
+        <div class="dl-wrap">
+          <a class="btn-dl" href="${path}" download="${esc(title)}.mp3" aria-label="ダウンロード">&#8659;</a>
+          <span class="dl-count" data-title="${esc(title)}"></span>
+        </div>
       </div>
       <div class="audio-wrap">
         <audio preload="none" src="${path}"></audio>
@@ -307,8 +326,15 @@ function render(list) {
     `;
 
     li.querySelector(".btn-play").addEventListener("click", () => togglePlay(li));
+
+    li.querySelector(".btn-dl").addEventListener("click", () => {
+      incrementDownload(title);
+    });
+
     ul.appendChild(li);
   });
+
+  updateAllCountDisplays();
 }
 
 /* ============================================================
@@ -361,6 +387,65 @@ document.getElementById("searchBox").addEventListener("input", function () {
 });
 
 /* ============================================================
+   Supabase ダウンロードカウント
+   ============================================================ */
+const SUPABASE_URL = "https://mbviclfajidherrtmyk.supabase.co";
+const SUPABASE_KEY = "sb_publishable_EK-rH_HBQIJKmnhNgEa6Iw_7_k4cdqu";
+
+let dlCounts = {};
+
+async function fetchAllCounts() {
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/downloads?select=title,count`,
+      { headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` } }
+    );
+    const rows = await res.json();
+    if (Array.isArray(rows)) {
+      rows.forEach(r => { dlCounts[r.title] = r.count; });
+    }
+    updateAllCountDisplays();
+  } catch (_) {}
+}
+
+async function incrementDownload(title) {
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/rpc/increment_download`,
+      {
+        method: "POST",
+        headers: {
+          "apikey": SUPABASE_KEY,
+          "Authorization": `Bearer ${SUPABASE_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ song_title: title })
+      }
+    );
+    const newCount = await res.json();
+    if (typeof newCount === "number") {
+      dlCounts[title] = newCount;
+      setCountDisplay(title, newCount);
+    }
+  } catch (_) {}
+}
+
+function updateAllCountDisplays() {
+  document.querySelectorAll(".dl-count").forEach(el => {
+    const t = el.dataset.title;
+    if (dlCounts[t]) setCountDisplay(t, dlCounts[t]);
+  });
+}
+
+function setCountDisplay(title, count) {
+  const el = document.querySelector(`.dl-count[data-title="${CSS.escape(title)}"]`);
+  if (el) {
+    el.textContent = count;
+    el.classList.add("visible");
+  }
+}
+
+/* ============================================================
    XSS対策
    ============================================================ */
 function esc(s) {
@@ -372,6 +457,7 @@ function esc(s) {
    ============================================================ */
 document.getElementById("subtitle").textContent = `${SONGS.length} tracks`;
 render(SONGS);
+fetchAllCounts();
 </script>
 
 </body>
