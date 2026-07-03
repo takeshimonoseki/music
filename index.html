@@ -3,53 +3,175 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>旅行配信者たけさんの曲部屋</title>
+  <title>☠ 旅行配信者たけさんの曲部屋</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☠️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #080810;
-      --surface:   #11111e;
-      --border:    #1e1e30;
-      --accent:    #7c6fff;
-      --accent-dim:#3d3880;
-      --text:      #d8d8e8;
-      --muted:     #55556a;
-      --playing:   #a39aff;
+      --bg:      #050505;
+      --surface: #0c0c0e;
+      --border:  #1c1c22;
+      --toxic:   #b6ff00;        /* 毒みどり */
+      --toxic-dim: rgba(182,255,0,0.12);
+      --blood:   #ff2657;        /* 血のピンク */
+      --text:    #d6d6d6;
+      --muted:   #56565e;
+      --mono:    'Share Tech Mono', monospace;
+      --display: 'Bebas Neue', sans-serif;
     }
 
+    html { scrollbar-color: var(--toxic) #111; }
+
     body {
-      font-family: -apple-system, 'Helvetica Neue', 'Hiragino Sans', Arial, sans-serif;
+      font-family: var(--mono), -apple-system, 'Hiragino Sans', sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── ノイズ & スキャンライン ── */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg,
+          rgba(255,255,255,0.025) 0px,
+          rgba(255,255,255,0.025) 1px,
+          transparent 1px,
+          transparent 3px);
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -50%;
+      background: radial-gradient(circle at 50% 0%, rgba(182,255,0,0.06), transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── 警告テープ（マーキー）── */
+    .tape {
+      position: relative;
+      z-index: 5;
+      background: var(--toxic);
+      color: #000;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      padding: 6px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      user-select: none;
+      border-bottom: 1px solid #000;
+    }
+    .tape-inner {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 22s linear infinite;
+    }
+    @keyframes marquee {
+      to { transform: translateX(-100%); }
     }
 
     /* ── ヘッダー ── */
     header {
-      padding: 56px 20px 40px;
+      position: relative;
+      z-index: 1;
+      padding: 70px 20px 46px;
       text-align: center;
     }
 
+    .skull-row {
+      font-size: 1.3rem;
+      letter-spacing: 1.2em;
+      padding-left: 1.2em; /* letter-spacing補正 */
+      color: var(--toxic);
+      opacity: 0.9;
+      margin-bottom: 18px;
+      animation: flicker 4s infinite;
+    }
+    @keyframes flicker {
+      0%, 100% { opacity: 0.9; }
+      92% { opacity: 0.9; }
+      93% { opacity: 0.2; }
+      94% { opacity: 0.9; }
+      96% { opacity: 0.4; }
+      97% { opacity: 0.9; }
+    }
+
     .site-title {
-      font-size: clamp(1.6rem, 5vw, 2.4rem);
-      font-weight: 700;
-      letter-spacing: 0.25em;
+      font-family: var(--display), 'Hiragino Sans', sans-serif;
+      font-size: clamp(1.7rem, 6.5vw, 3.4rem);
+      font-weight: 400;
+      letter-spacing: 0.12em;
       color: #fff;
+      position: relative;
+      display: inline-block;
+      text-shadow:
+        0 0 24px rgba(182,255,0,0.35),
+        0 0 60px rgba(182,255,0,0.15);
+    }
+
+    /* グリッチ */
+    .site-title::before,
+    .site-title::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      opacity: 0.8;
+    }
+    .site-title::before {
+      color: var(--blood);
+      z-index: -1;
+      animation: glitch-a 3.2s infinite steps(1);
+    }
+    .site-title::after {
+      color: var(--toxic);
+      z-index: -2;
+      animation: glitch-b 2.7s infinite steps(1);
+    }
+    @keyframes glitch-a {
+      0%, 100% { transform: none; clip-path: none; }
+      12% { transform: translate(-3px, 1px); clip-path: inset(10% 0 62% 0); }
+      13% { transform: none; clip-path: none; }
+      54% { transform: translate(2px, -1px); clip-path: inset(55% 0 20% 0); }
+      56% { transform: none; clip-path: none; }
+    }
+    @keyframes glitch-b {
+      0%, 100% { transform: none; clip-path: none; }
+      30% { transform: translate(3px, -2px); clip-path: inset(70% 0 5% 0); }
+      32% { transform: none; clip-path: none; }
+      78% { transform: translate(-2px, 2px); clip-path: inset(0 0 80% 0); }
+      80% { transform: none; clip-path: none; }
     }
 
     .site-subtitle {
-      margin-top: 10px;
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
+      margin-top: 16px;
+      font-size: 0.75rem;
+      letter-spacing: 0.5em;
+      padding-left: 0.5em;
       color: var(--muted);
+      text-transform: uppercase;
     }
+    .site-subtitle .num { color: var(--toxic); }
 
     /* ── メイン ── */
     main {
-      max-width: 780px;
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
       margin: 0 auto;
-      padding: 0 16px 100px;
+      padding: 0 16px 120px;
     }
 
     /* ── 検索 ── */
@@ -58,45 +180,66 @@
       top: 0;
       z-index: 20;
       padding: 14px 0;
-      background: var(--bg);
+      background: linear-gradient(to bottom, var(--bg) 75%, transparent);
     }
 
     #searchBox {
       width: 100%;
-      padding: 11px 20px;
+      padding: 12px 22px;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 999px;
-      color: var(--text);
+      color: var(--toxic);
+      font-family: var(--mono);
       font-size: 0.9rem;
+      letter-spacing: 0.08em;
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
     }
     #searchBox::placeholder { color: var(--muted); }
-    #searchBox:focus { border-color: var(--accent); }
+    #searchBox:focus {
+      border-color: var(--toxic);
+      box-shadow: 0 0 20px rgba(182,255,0,0.15);
+    }
 
     /* ── リスト ── */
-    #songList { list-style: none; }
+    #songList { list-style: none; margin-top: 8px; }
 
     .song-item {
       border-bottom: 1px solid var(--border);
+      position: relative;
+      transition: background 0.15s;
     }
     .song-item:first-child { border-top: 1px solid var(--border); }
+    .song-item:hover { background: rgba(182,255,0,0.03); }
 
-    /* 行 */
+    /* 左のバー */
+    .song-item::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--toxic);
+      transform: scaleY(0);
+      transition: transform 0.2s;
+    }
+    .song-item:hover::before,
+    .song-item.playing::before { transform: scaleY(1); }
+    .song-item.playing::before { box-shadow: 0 0 12px var(--toxic); }
+
     .song-row {
       display: flex;
       align-items: center;
       gap: 14px;
-      padding: 14px 8px;
+      padding: 15px 10px 15px 16px;
       user-select: none;
     }
 
     .song-num {
-      font-size: 0.75rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
       color: var(--muted);
-      font-variant-numeric: tabular-nums;
-      min-width: 22px;
+      min-width: 26px;
       text-align: right;
       flex-shrink: 0;
     }
@@ -104,130 +247,182 @@
     .song-title {
       flex: 1;
       font-size: 0.95rem;
+      letter-spacing: 0.04em;
       color: var(--text);
-      transition: color 0.15s;
       min-width: 0;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      transition: color 0.15s;
+    }
+    .song-item:hover .song-title { color: #fff; }
+
+    .song-item.playing .song-num,
+    .song-item.playing .song-title {
+      color: var(--toxic);
+      text-shadow: 0 0 12px rgba(182,255,0,0.4);
     }
 
-    .song-item.playing .song-num   { color: var(--playing); }
-    .song-item.playing .song-title { color: var(--playing); }
+    /* イコライザ */
+    .eq {
+      display: none;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+    .song-item.playing .eq { display: flex; }
+    .eq span {
+      width: 3px;
+      background: var(--toxic);
+      animation: eq 0.9s ease-in-out infinite;
+      box-shadow: 0 0 6px rgba(182,255,0,0.6);
+    }
+    .eq span:nth-child(1) { height: 60%; animation-delay: -0.5s; }
+    .eq span:nth-child(2) { height: 100%; animation-delay: -0.2s; }
+    .eq span:nth-child(3) { height: 40%; animation-delay: -0.7s; }
+    .eq span:nth-child(4) { height: 80%; animation-delay: -0.35s; }
+    @keyframes eq {
+      0%, 100% { transform: scaleY(0.3); }
+      50% { transform: scaleY(1); }
+    }
 
     /* 再生ボタン */
     .btn-play {
       flex-shrink: 0;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      border: 1px solid #2e2e44;
+      width: 36px;
+      height: 36px;
+      border: 1px solid #2c2c34;
       background: transparent;
-      color: #666;
-      font-size: 0.7rem;
+      color: var(--muted);
+      font-size: 0.65rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: border-color 0.15s, color 0.15s, background 0.15s;
+      transition: all 0.15s;
+      clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
     }
     .btn-play:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+      border-color: var(--toxic);
+      color: var(--toxic);
+      box-shadow: 0 0 14px rgba(182,255,0,0.25);
     }
     .song-item.playing .btn-play {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
+      background: var(--toxic);
+      border-color: var(--toxic);
+      color: #000;
+      box-shadow: 0 0 20px rgba(182,255,0,0.5);
     }
 
-    /* DLボタン＋カウント */
+    /* DL */
     .dl-wrap {
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2px;
+      gap: 1px;
+      min-width: 40px;
     }
     .btn-dl {
       color: var(--muted);
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       text-decoration: none;
-      padding: 2px 6px;
+      padding: 3px 8px;
       line-height: 1;
-      transition: color 0.15s;
-      display: flex;
-      align-items: center;
+      transition: color 0.15s, text-shadow 0.15s, transform 0.1s;
     }
-    .btn-dl:hover { color: var(--accent); }
+    .btn-dl:hover {
+      color: var(--blood);
+      text-shadow: 0 0 12px rgba(255,38,87,0.6);
+      transform: translateY(1px);
+    }
     .dl-count {
-      font-size: 0.65rem;
+      font-family: var(--mono);
+      font-size: 0.62rem;
       color: var(--muted);
-      font-variant-numeric: tabular-nums;
-      min-width: 24px;
-      text-align: center;
       opacity: 0;
       transition: opacity 0.3s;
     }
     .dl-count.visible { opacity: 1; }
+    .dl-count::before { content: "☠"; margin-right: 3px; color: var(--blood); opacity: 0.8; }
 
-    /* ── オーディオエリア ── */
+    /* ── オーディオ ── */
     .audio-wrap {
       display: none;
-      padding: 0 8px 14px 44px;
+      padding: 2px 10px 16px 56px;
     }
     .audio-wrap.open { display: block; }
-
     .audio-wrap audio {
       width: 100%;
       height: 34px;
-      border-radius: 4px;
-      accent-color: var(--accent);
+      accent-color: var(--toxic);
+      filter: invert(0.88) hue-rotate(180deg) saturate(0.6);
+      border-radius: 2px;
     }
 
-    /* ── 検索結果なし ── */
+    /* ── 空 ── */
     .empty {
       text-align: center;
       color: var(--muted);
-      padding: 80px 0;
-      font-size: 0.9rem;
+      padding: 90px 0;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
       display: none;
     }
     .empty.show { display: block; }
+    .empty::before {
+      content: "☠";
+      display: block;
+      font-size: 2.4rem;
+      margin-bottom: 14px;
+      color: var(--border);
+    }
 
     /* ── フッター ── */
     footer {
+      position: relative;
+      z-index: 1;
       text-align: center;
-      padding: 32px 20px;
+      padding: 40px 20px 50px;
       color: #333;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
     }
+    footer .skull { color: var(--toxic); opacity: 0.5; }
+
+    ::selection { background: var(--toxic); color: #000; }
   </style>
 </head>
 <body>
 
+<div class="tape">
+  <div class="tape-inner">
+    ☠ TAKE'S SOUND VAULT ☠ NO PRISONERS, ONLY PLAYLISTS ☠ PRESS PLAY AT YOUR OWN RISK ☠ FREE DOWNLOAD ZONE ☠ TAKE'S SOUND VAULT ☠ NO PRISONERS, ONLY PLAYLISTS ☠ PRESS PLAY AT YOUR OWN RISK ☠ FREE DOWNLOAD ZONE ☠&nbsp;
+  </div>
+</div>
+
 <header>
-  <h1 class="site-title">旅行配信者たけさんの曲部屋</h1>
-  <p class="site-subtitle" id="subtitle">— — —</p>
+  <div class="skull-row">☠ ☠ ☠</div>
+  <h1 class="site-title" data-text="旅行配信者たけさんの曲部屋">旅行配信者たけさんの曲部屋</h1>
+  <p class="site-subtitle"><span class="num" id="trackCount">--</span> TRACKS / STREAM &amp; DOWNLOAD</p>
 </header>
 
 <main>
   <div class="search-wrap">
-    <input type="text" id="searchBox" placeholder="曲名で検索...">
+    <input type="text" id="searchBox" placeholder="> SEARCH TRACKS_" autocomplete="off">
   </div>
   <ul id="songList"></ul>
-  <p class="empty" id="empty">曲が見つかりません</p>
+  <p class="empty" id="empty">NO SIGNAL — 曲が見つかりません</p>
 </main>
 
 <footer>
-  <!-- ↓ 名前を変えてください -->
-  &copy; 2025 Your Name
+  <span class="skull">☠</span> &copy; 2026 旅行配信者たけさん <span class="skull">☠</span>
 </footer>
 
 <script>
 /* ============================================================
-   曲リスト（タイトルとファイル名が一致している前提）
+   曲リスト（music/フォルダのファイル名と一致させる）
    ============================================================ */
 const SONGS = [
   "アフターグロウ",
@@ -312,6 +507,7 @@ function render(list) {
       <div class="song-row">
         <span class="song-num">${num}</span>
         <span class="song-title">${esc(title)}</span>
+        <span class="eq"><span></span><span></span><span></span><span></span></span>
         <button class="btn-play" aria-label="再生">&#9654;</button>
         <div class="dl-wrap">
           <a class="btn-dl" href="${path}" download="${esc(title)}.mp3" aria-label="ダウンロード">&#8659;</a>
@@ -324,10 +520,7 @@ function render(list) {
     `;
 
     li.querySelector(".btn-play").addEventListener("click", () => togglePlay(li));
-
-    li.querySelector(".btn-dl").addEventListener("click", () => {
-      incrementDownload(title);
-    });
+    li.querySelector(".btn-dl").addEventListener("click", () => incrementDownload(title));
 
     ul.appendChild(li);
   });
@@ -343,7 +536,6 @@ function togglePlay(item) {
   const audio = wrap.querySelector("audio");
   const btn   = item.querySelector(".btn-play");
 
-  // 再生中の別トラックを停止
   if (activeAudio && activeAudio !== audio) {
     stopItem(activeItem);
   }
@@ -353,11 +545,10 @@ function togglePlay(item) {
   } else {
     wrap.classList.add("open");
     item.classList.add("playing");
-    btn.innerHTML = "&#9646;&#9646;"; // ■■ 一時停止アイコン
+    btn.innerHTML = "&#9646;&#9646;";
     audio.play().catch(() => {});
     activeAudio = audio;
     activeItem  = item;
-
     audio.onended = () => stopItem(item);
   }
 }
@@ -453,7 +644,7 @@ function esc(s) {
 /* ============================================================
    初期化
    ============================================================ */
-document.getElementById("subtitle").textContent = `${SONGS.length} tracks`;
+document.getElementById("trackCount").textContent = SONGS.length;
 render(SONGS);
 fetchAllCounts();
 </script>
