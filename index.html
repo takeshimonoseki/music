@@ -265,6 +265,21 @@ footer { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; paddi
 @keyframes fxRise { 0% { opacity: 0.95; transform: translate(-50%,-50%) scale(0.5) rotate(0); } 100% { opacity: 0; transform: translate(-50%,-170%) scale(1.05) rotate(var(--rot,20deg)); } }
 @keyframes fxBurst { 0% { opacity: 1; transform: translate(-50%,-50%) scale(0.4); } 100% { opacity: 0; transform: translate(calc(-50% + var(--dx,0px)), calc(-50% + var(--dy,0px))) scale(1.05); } }
 @media (prefers-reduced-motion: reduce) { .mini, .devil-art, .anim-float, .anim-sway, .anim-cross, .anim-spin { animation: none !important; } }
+
+/* ===== DOWNLOAD TOAST（進捗表示）===== */
+#dlToast { position: fixed; left: 50%; bottom: calc(var(--player-h) + 18px); transform: translateX(-50%) translateY(20px);
+  z-index: 200; background: rgba(20,10,24,0.94); border: 1px solid var(--line-2); color: var(--ink);
+  padding: 12px 18px; border-radius: 14px; font-size: 0.82rem; display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 16px 40px -16px rgba(255,50,90,0.55); opacity: 0; pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s; backdrop-filter: blur(14px); max-width: 92vw; }
+#dlToast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+#dlToast.done { border-color: var(--devil); }
+#dlToast .ic { font-size: 1rem; }
+#dlToast .tt { font-family: var(--jp); font-weight: 700; max-width: 42vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#dlToast .bar { width: 120px; height: 6px; border-radius: 6px; background: rgba(255,110,160,0.2); overflow: hidden; }
+#dlToast .bar > i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--devil), var(--purple)); transition: width 0.15s; }
+#dlToast .pct { font-family: var(--disp); font-weight: 700; min-width: 42px; text-align: right; color: var(--devil-2); }
+@media (max-width: 640px) { #dlToast .bar { width: 84px; } #dlToast .tt { max-width: 34vw; } }
 </style>
 </head>
 <body>
@@ -427,6 +442,14 @@ footer { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; paddi
   <p class="copyright"><span class="s">😈</span> © 2026 旅行配信者たけさん <span class="s">😈</span></p>
 </footer>
 
+<!-- ダウンロード進捗トースト -->
+<div id="dlToast">
+  <span class="ic">⇩</span>
+  <span class="tt" id="dlToastTitle"></span>
+  <span class="bar"><i id="dlToastBar"></i></span>
+  <span class="pct" id="dlToastPct">0%</span>
+</div>
+
 <!-- ================= PLAYER BAR ================= -->
 <div id="playerBar">
   <canvas id="viz"></canvas>
@@ -535,6 +558,75 @@ async function incrementPlay(title) {
   try { const n = await rpcIncrement(PLAY_PREFIX + title); if (typeof n === "number") { playCounts[title] = n; updateMeta(title); updateStats(); } } catch (_) {}
 }
 
+/* ================================================================
+   DOWNLOAD — 進捗つきの確実な保存（blob方式）+ フォールバック
+================================================================ */
+const dlToast = document.getElementById("dlToast");
+const dlToastTitle = document.getElementById("dlToastTitle");
+const dlToastBar = document.getElementById("dlToastBar");
+const dlToastPct = document.getElementById("dlToastPct");
+let dlHideTimer = null;
+const dlActive = new Set();
+
+function showToast(title) {
+  clearTimeout(dlHideTimer);
+  dlToast.classList.remove("done");
+  dlToastTitle.textContent = title;
+  dlToastBar.style.width = "0%";
+  dlToastPct.textContent = "0%";
+  dlToast.classList.add("show");
+}
+function setToast(frac) {
+  const p = Math.max(0, Math.min(1, frac));
+  dlToastBar.style.width = (p * 100).toFixed(0) + "%";
+  dlToastPct.textContent = (p * 100).toFixed(0) + "%";
+}
+function finishToast(ok) {
+  if (ok) { dlToast.classList.add("done"); dlToastBar.style.width = "100%"; dlToastPct.textContent = "完了"; }
+  dlHideTimer = setTimeout(() => dlToast.classList.remove("show"), ok ? 1400 : 400);
+}
+function saveBlob(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 6000);
+}
+function plainDownload(title) {
+  const a = document.createElement("a");
+  a.href = trackPath(title); a.download = title + ".mp3";
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+async function downloadFile(title) {
+  incrementDownload(title);
+  if (dlActive.has(title)) return;
+  dlActive.add(title);
+  const url = trackPath(title);
+  showToast(title);
+  try {
+    const res = await fetch(url);
+    if (!res.ok || !res.body) throw new Error("bad response");
+    const total = +res.headers.get("content-length") || 0;
+    const reader = res.body.getReader();
+    const chunks = []; let received = 0;
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      chunks.push(value); received += value.length;
+      if (total) setToast(received / total); else dlToastPct.textContent = (received / 1048576).toFixed(1) + "MB";
+    }
+    saveBlob(new Blob(chunks, { type: "audio/mpeg" }), title + ".mp3");
+    finishToast(true);
+  } catch (e) {
+    /* fetch が使えない環境では通常のリンクDLにフォールバック */
+    plainDownload(title);
+    finishToast(false);
+  } finally {
+    dlActive.delete(title);
+  }
+}
+
 /* 訪問者数：このブラウザで初回のみ +1（＝おおよその来場者数）*/
 async function trackVisit() {
   try {
@@ -594,7 +686,7 @@ function render(list) {
         '<a class="btn-row-dl" href="' + trackPath(title) + '" download="' + esc(title) + '.mp3" aria-label="ダウンロード">⇩</a>' +
       '</div>';
     li.addEventListener("click", e => { if (e.target.closest(".btn-row-dl")) return; handleRowPlay(idx); });
-    li.querySelector(".btn-row-dl").addEventListener("click", () => incrementDownload(title));
+    li.querySelector(".btn-row-dl").addEventListener("click", e => { e.preventDefault(); downloadFile(title); });
     ul.appendChild(li);
   });
 
@@ -681,7 +773,7 @@ if (savedVol !== null) { audio.volume = +savedVol; volEl.value = savedVol; }
 volEl.style.setProperty("--vp", (volEl.value * 100) + "%");
 volEl.addEventListener("input", () => { audio.volume = +volEl.value; volEl.style.setProperty("--vp", (volEl.value * 100) + "%"); localStorage.setItem("vault_vol", volEl.value); });
 
-npDl.addEventListener("click", () => { if (currentIndex >= 0) incrementDownload(SONGS[currentIndex]); });
+npDl.addEventListener("click", e => { if (currentIndex >= 0) { e.preventDefault(); downloadFile(SONGS[currentIndex]); } });
 
 document.addEventListener("keydown", e => {
   if (e.code !== "Space") return;
